@@ -444,6 +444,19 @@
 				}
 				svgCanvas.setMode('eyedropper');
 		  }
+
+		   //Addition for defining the extension ext-vectorText.js
+
+		  var setVectorTextMode = function() {
+			  var curr = $('.tool_button_current');
+				if(curr.length && curr[0].id !== 'tool_vectorText') {
+					curr.removeClass('tool_button_current').addClass('tool_button');
+					$('#tool_vectorText').addClass('tool_button_current').removeClass('tool_button');
+				}
+				svgCanvas.setMode('vectorText');
+		  }
+
+		  //End of addition
 			
 			var togglePathEditMode = function(editmode, elems) {
 				$('#tools_bottom_2,#tools_bottom_3').toggle(!editmode);
@@ -3325,6 +3338,10 @@
 					{key: ['alt+shift+right', true], fn: function(){svgCanvas.cloneSelectedElements(10,0)}},	
 					{key: modKey + 'A', fn: function(){svgCanvas.selectAllInCurrentLayer();}},
 					{key: 'I', fn: function(){setEyedropperMode()}},
+
+					//New addition for extension ext-vectorText.js 
+					{key: 'Y', fn: function(){setVectorTextMode()}},
+					//End of addition
 
 					// Standard shortcuts
 					{key: modKey + 'shift+z', fn: clickRedo},
