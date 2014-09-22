@@ -61,7 +61,12 @@ methodDraw.addExtension("view_grid", function(s) {
         });
         
         gridPattern.appendChild(gridimg);
-        $('#svgroot defs').append(gridPattern);
+
+        //fix grid https://github.com/duopixel/Method-Draw/issues/19
+        $('#canvasBackground defs').append(gridPattern);
+        //$('#svgroot defs').append(gridPattern);
+
+        // End of fix
 
         // grid-box
         var gridBox = svgdoc.createElementNS(svgns, "rect");
