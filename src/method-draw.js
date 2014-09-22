@@ -2383,11 +2383,22 @@
 				if(window.canvg) {
 					svgCanvas.rasterExport();
 				} else {
-					$.getScript('canvg/rgbcolor.js', function() {
+					//Bug Fix of rasterExport - https://github.com/duopixel/Method-Draw/issues/15
+					$.getScript('lib/canvg/rgbcolor.js', function() {
+					$.getScript('lib/canvg/canvg.js', function() {
+					svgCanvas.rasterExport();
+					});
+					});
+
+
+
+					/*$.getScript('canvg/rgbcolor.js', function() {
 						$.getScript('canvg/canvg.js', function() {
 							svgCanvas.rasterExport();
 						});
-					});
+					});*/ 
+
+					// End of Bug Fixing
 				}
 			}
 			
