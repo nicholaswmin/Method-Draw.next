@@ -12,6 +12,9 @@
  * 3) svgcanvas.js
  * 4) A folder with fonts in this .js file's root directory "e.g extensions/vectorTextFonts".
  */
+
+"use strict";
+
 methodDraw.addExtension("vectorText", function(S) {
     var svgcontent = S.svgcontent,
         svgns = "http://www.w3.org/2000/svg",
@@ -149,7 +152,7 @@ methodDraw.addExtension("vectorText", function(S) {
                         "x": 100
                     }
                 });
-                var str = orig_source = svgCanvas.getSvgString();
+                var str = svgCanvas.getSvgString();
                 $('#svg_source_textarea').val(str);
                 svgCanvas.setSvgString($('#svg_source_textarea').val())
                 selectedElements.push(nextId);
@@ -222,13 +225,13 @@ methodDraw.addExtension("vectorText", function(S) {
         glyphsDiv = document.getElementById('glyphs');
         glyphsDiv.innerHTML = '';
 
-        amount = Math.min(100, font.glyphs.length);
+        var amount = Math.min(100, font.glyphs.length);
         x = 50;
         y = 120;
         fontSize = 72;
         for (i = 0; i < amount; i++) {
-            glyph = font.glyphs[i];
-            ctx = createGlyphCanvas(glyph, 150);
+            var glyph = font.glyphs[i];
+            var ctx = createGlyphCanvas(glyph, 150);
             glyph.draw(ctx, x, y, fontSize);
             glyph.drawPoints(ctx, x, y, fontSize);
             glyph.drawMetrics(ctx, x, y, fontSize);
@@ -365,8 +368,8 @@ methodDraw.addExtension("vectorText", function(S) {
             var mode = svgCanvas.getMode();
             if (mode == "vectorText") {
                 var e = opts.event;
-                var x = start_x = opts.start_x;
-                var y = start_y = opts.start_y;
+                var x = opts.start_x;
+                var y = opts.start_y;
                 renderJob1.canvasX = x;
                 renderJob1.canvasY = y;
 
