@@ -1301,6 +1301,10 @@
   					"y": -1,
   					"width": res.w+2,
   					"height": res.h+2,
+  					//Adding some stroke to the background so we can see it clearly when exporting SVG
+  					"stroke-width":"5px",
+  					"stroke": "#000",
+  					//End of addition
   					"stroke": "none",
   					"id": "canvas_background",
   					"opacity": 1,
