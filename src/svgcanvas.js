@@ -2368,12 +2368,30 @@ var getMouseTarget = this.getMouseTarget = function(evt) {
 	{
 		if (canvas.spaceKey) return;
 		var right_click = evt.button === 2;
+
+
+		//Bug fixing for Firefox wrong mouse position. Also fixes wrong mouse on zooming: https://code.google.com/p/svg-edit/issues/detail?id=1131
+
+		root_sctm = $('#svgcontent g')[0].getScreenCTM().inverse();
 		
-		root_sctm = svgcontent.getScreenCTM().inverse();
+		var pt = svgedit.math.transformPoint( evt.pageX, evt.pageY, root_sctm ),
+		mouse_x = pt.x * current_zoom,
+		mouse_y = pt.y * current_zoom;
+
+
+		//Method-draw fixed - Corrected the wrong mouse position but it was still wrong when zoomed. 
+		//Changed only the root_sctm =... line with what this guy suggested: https://groups.google.com/d/msg/svg-edit/cvrwclZVeGI/V2LlcgblZu0J
+
+		/* 
+		root_sctm = $('#svgcontent g')[0].getScreenCTM().inverse();
 		isBotchedZoom = svgedit.browser.isGecko();
 		var pt = transformPoint( evt.pageX, evt.pageY, root_sctm ),
 			mouse_x = pt.x * (isBotchedZoom ? 1 : current_zoom),
-			mouse_y = pt.y * (isBotchedZoom ? 1 : current_zoom);
+			mouse_y = pt.y * (isBotchedZoom ? 1 : current_zoom); 
+		*/
+
+		//End of Bug Fixing
+
 			
 		evt.preventDefault();
 
