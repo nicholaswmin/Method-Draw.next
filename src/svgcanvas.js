@@ -8761,6 +8761,58 @@ this.moveSelectedElements = function(dx, dy, undoable) {
 	}
 };
 
+
+
+
+//Addition - Used by ext-elementTracker.js to move single elements. Same as moveSelectedElements above but moves one item at a time.
+this.moveSingleElement = function(elemToMove,dx, dy, undoable) {
+	if (dx.constructor != Array) {
+		dx /= current_zoom;
+		dy /= current_zoom;
+	}
+	var undoable = undoable || true;
+	var batchCmd = new BatchCommand("position");
+	var i = selectedElements.length;
+	var selected = elemToMove;
+		if (selected != null) {
+			
+			var xform = svgroot.createSVGTransform();
+			var tlist = getTransformList(selected);
+			
+
+			if (dx.constructor == Array) {
+
+				xform.setTranslate(dx,dy);
+			} else {
+
+				xform.setTranslate(dx,dy);
+			}
+
+			if(tlist.numberOfItems) {
+				tlist.insertItemBefore(xform, 0);
+			} else {
+				tlist.appendItem(xform);
+			}
+			
+			var cmd = recalculateDimensions(selected);
+			if (cmd) {
+				batchCmd.addSubCommand(cmd);
+			}
+			
+			selectorManager.requestSelector(selected).resize();
+		}
+	
+	if (!batchCmd.isEmpty()) {
+		if (undoable)
+			addCommandToHistory(batchCmd);
+		call("changed", selectedElements);
+		return batchCmd;
+	}
+};
+
+//End of new addition
+
+
 // Function: cloneSelectedElements
 // Create deep DOM copies (clones) of all selected elements and move them slightly 
 // from their originals
