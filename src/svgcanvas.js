@@ -2747,8 +2747,15 @@ var getMouseTarget = this.getMouseTarget = function(evt) {
 		if(evt.button === 1 || canvas.spaceKey) return;
 		var selected = selectedElements[0],
 			pt = transformPoint( evt.pageX, evt.pageY, root_sctm ),
-			mouse_x = pt.x * (isBotchedZoom ? 1 : current_zoom),
-			mouse_y = pt.y * (isBotchedZoom ? 1 : current_zoom),
+
+			//Bug Fixing for Firefox wrong mouse position. This is 2nd part of code that gets fixed for this. 1st part is somewhere in this page
+			mouse_x = pt.x * current_zoom,
+			mouse_y = pt.y * current_zoom,
+			//mouse_x = pt.x * (isBotchedZoom ? 1 : current_zoom),
+			//mouse_y = pt.y * (isBotchedZoom ? 1 : current_zoom),
+
+			//End of bug fixing
+
 			shape = getElem(getId());
 
 		var real_x = x = mouse_x / current_zoom;
