@@ -28,10 +28,10 @@
 		var Editor = {};
 		var is_ready = false;
 		curConfig = {
-		  canvas_expansion: 1, 
-		  dimensions: [580,400], 
-		  initFill: {color: 'fff', opacity: 1},
-		  initStroke: {width: 1.5, color: '000', opacity: 1},
+		  canvas_expansion: 2, 
+		  dimensions: [900,600], 
+		  initFill: {color: '4880FF', opacity: 1},
+		  initStroke: {width: 0, color: '000', opacity: 1},
 			initOpacity: 1,
 			imgPath: 'images/',
 			extPath: 'extensions/',
@@ -43,7 +43,7 @@
 			gridSnapping: false,
 			gridColor: "#000",
 			baseUnit: 'px',
-			snappingStep: 10,
+			snappingStep: 1,
 			showRulers: (svgedit.browser.isTouch()) ? false : true,
 			show_outside_canvas: false,
 			no_save_warning: true,
