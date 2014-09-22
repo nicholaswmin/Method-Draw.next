@@ -1610,6 +1610,14 @@ box-shadow: inset 0 3px 10px rgba(255, 255, 255, 0.1),
   cursor: url(../images/eyedropper.png) 0 16, crosshair;
 }
 
+/*Addition CSS cursor for ext-vectorText.js */
+
+#workarea.vectorText {
+  cursor: url(../images/vectorTextCursor.png) 0 16, crosshair;
+}
+/*End of addition*/
+
+
 #workarea.fhpath {
   cursor: url(../images/pencil_cursor.png) 0 20, crosshair;
 }
@@ -2081,3 +2089,56 @@ input[readonly=readonly]:focus {
 	width: 100%;
 	display: block;
 }
+
+
+
+/*Addition for ext-vectorText.js font selector div buttons */
+
+
+#placeFontBtn {
+    background-position: 0px -15px;
+    color: rgb(255, 255, 255);
+    margin-right:5%;
+    cursor: pointer;
+    height: 37px;
+    position: relative;
+    float:right;
+    text-decoration: none solid rgb(255, 255, 255);
+    vertical-align: middle;
+    white-space: nowrap;
+    width: auto;
+    z-index: 2;
+    perspective-origin: 46px 18.5px;
+    transform-origin: 46px 18.5px;
+    background: rgb(36, 227, 190) none repeat-x scroll 0px -15px / auto padding-box border-box;
+    border: 0px none rgb(255, 255, 255);
+    font: normal normal normal 15px/21px Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    outline: rgb(255, 255, 255) none 0px;
+    padding: 8px 20px;
+    transition: all 0.25s ease 0s;
+}
+
+#cancelFontBtn {
+    color: rgba(255, 255, 255, 0.74902);
+    cursor: pointer;
+    height: 37px;
+    position: relative;
+    float:right;
+    text-decoration: none solid rgba(255, 255, 255, 0.74902);
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 89px;
+    z-index: 2;
+    perspective-origin: 44.5px 18.5px;
+    transform-origin: 44.5px 18.5px;
+    background: rgb(237, 118, 105) none repeat-x scroll 0% 0% / auto padding-box border-box;
+    border: 0px none rgba(255, 255, 255, 0.74902);
+    font: normal normal normal 15px/21px Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0px 0px 0px -1px;
+    outline: rgba(255, 255, 255, 0.74902) none 0px;
+    padding: 8px 20px;
+    transition: all 0.25s ease 0s;
+    margin-right:2%;
+}
+
+/*End of addition*/
