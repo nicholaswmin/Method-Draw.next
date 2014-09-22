@@ -1613,7 +1613,7 @@ box-shadow: inset 0 3px 10px rgba(255, 255, 255, 0.1),
 /*Addition CSS cursor for ext-vectorText.js */
 
 #workarea.vectorText {
-  cursor: url(../images/vectorTextCursor.png) 0 16, crosshair;
+  cursor: crosshair;
 }
 /*End of addition*/
 
