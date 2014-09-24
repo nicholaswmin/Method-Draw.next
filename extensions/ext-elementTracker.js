@@ -273,7 +273,7 @@ methodDraw.addExtension("elementTracker", function(S) {
         svgicons: "extensions/vectorText-icon.xml", //this is not needed since we don't need an icon but the extension throws error without it.
         callback: function(extElementPosition) {
 
-              //jQuery extension function for positioning HTML elements in context menu - Do not remove/modify this if using this extension as template for new extensions
+              //jQuery extension function for positioning HTML elements in context menu - Do not remove/modify this 
               $.fn.nthorfirst = function (path, i) {
               var elems = this.find(path);
               if (elems.length > i) return elems.eq(i);
@@ -281,20 +281,21 @@ methodDraw.addExtension("elementTracker", function(S) {
               }
 
             //HTML element config options.
-            var attachToPanel = 'selected_panel'; //Do not remove this if using this extension as template for new extensions. Just modify it accordingly
-            var extElementConfig={extElementPosition :1,extElementId:'tracking',extElementTitle:'Tracking', extElementMin:-15, 
-            extElementMax:15,extElementStep:1,callback:debouncer(debouncer_func, 250),extElementCursor:true}; //Config options for element. //Do not remove this if using this as template for new extensions. Just modify it accordingly
+            var attachToPanel = 'selected_panel'; //Type here the panel you want to attach the element to.
+            var extElementConfig1={extElementPosition :1,extElementId:'tracking',extElementTitle:'Tracking'}; //Config options for element. Adjust accordingly
 
-            //HTML append template for adding a drag-input type html elem. Do not remove/modify this if using this extension as template for new extensions with HTML elements of input type
-            $('#'+attachToPanel).nthorfirst('> *',extElementConfig.extElementPosition).before("<label><input id='tracking'><span>"+extElementConfig.extElementTitle+"</span></label>");
-            $('#'+extElementConfig.extElementId).dragInput({ //Initialize using MethodDraw drag input - position of tool in panel depends on extension loading order in index.html
-                min: extElementConfig.extElementMin,
-                max: extElementConfig.extElementMax,
-                step: extElementConfig.extElementStep,
-                callback: extElementConfig.callback,
-                cursor: extElementConfig.extElementCursor
-            }); //init a Method-draw drag input template. Do not remove/modify this if using this extension as template for new extensions
-            
+            //HTML append template for adding a drag-input type html elem. Modify only min,max,step,callback and cursor.
+            $('#'+attachToPanel).nthorfirst('> *',extElementConfig1.extElementPosition).before("<label><input id='tracking'><span>"+extElementConfig1.extElementTitle+"</span></label>");
+            $('#'+extElementConfig1.extElementId).dragInput({ //Initialize using MethodDraw drag input. Do not remove/modify this.
+                min: -15,
+                max: 15,
+                step: 1,
+                callback: debouncer(debouncer_func, 250),
+                cursor: false
+            }); //init a Method-draw drag input template. Do not remove/modify this 
+
+            //The function to call when dragging the input is declared in the callback property of extElementConfig.
+            //To add more inputs declare another extElementConfig object,e.g 'extElementConfig2' and copy/paste the append function(nthorfirst)
         },
 
 
