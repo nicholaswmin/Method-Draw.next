@@ -11,27 +11,20 @@
  * 2) svgcanvas.js
 
 IMPORTANT NOTE: This extension does not conform at all to the guide for creating extensions for SVG-edit
-This extension does NOT add any buttons to the left toolbar as tools. Rather it declares context tools
-(e.g tools that belong to the selected panel and do not need firing up, they are always on. This tool is only available on multi-selecting elements.)
-I have tried to keep the structure as close I could to the guide for creating extensions but at some point I stop and start using my own structure.
-Method-draw's context tools of type 'input' are completely different that SVG-edit's - therefore I initialize and detect changes on them using a different way
-Follow THIS template for adding more context tools on Method-draw. Use only for context tools with draginput classes 
 
-//Maybe we should stop using the svg-edit guide for adding context tools and use simple appends for the HTML elements. The svgCanvas methods are accessible anyway.
+-This extension is a context-menu addition - it's not  a tool per se. Because Method-Draw has custom input elements(touch draggables called drag-inputs),
+ I created this extension which uses custom jQuery appends and the Method-Draw drag-input initializer to add the necessary HTML elements.
+-The return option allows you to just set the panel where you want the tool to go, populate the configOptions object and you are good to go. 
+-Remember not to remove the drag input append template, the drag-input initializer and the jQuery extension function for positioning.
+Alter only the configOptions and the panel where you want to attach your extension's input.
 
-Some additional notes:
-1) I added the extension
-2) I added an input element used for specifying tracking amount as the guide specifies. I attach it to the multiselected panel
-3) Initialized the input element and set css using the ''methods'' used in method-draw.js instead of following the guide
-4) Added some additional CSS to accomodate the input element gracefully in the multiselected panel.
-5) The input element has a callback which calls debouncer function with some milliseconds as parameter
-6) debouncer, debounces the changes on the input element and fires an event in bursts instead of continuously on dragging. Tracking is heavy calcs and we don't want to freeze the UI
-7) debouncer calls on 'bursts' the tracking algorithm
-8 the tracking algorithm uses selectedElems array which is populated on selectedChange event with all the multiselected SVG elements to track.
+Please use this template for adding context tools in Method-Draw from now on. The return object of this extension can be easily used as a template for any type
+of input context tool. If used as template remember to include all necessary functions,variables,templates that are marked in this file with a ''Do not remove''
 
+
+-----------------------
 
 IMPORTANT NOTE!!: This extension uses a custom-method defined in svgcanvas.js I will add it here and you can paste it below moveSelectedElements method in src/svgcanvas.js
-
 
 //Addition --MOVE THIS TO SVGCANVAS.JS-- - Used by ext-elementTracker.js to move single elements
 
@@ -96,6 +89,8 @@ methodDraw.addExtension("elementTracker", function(S) {
         addToHistory = function(cmd) {
             svgCanvas.undoMgr.addCommandToHistory(cmd);
         };
+
+        
 
 
     var selectedElems = [];//This gets filled with selected elements on selectedChanged at the end of this file.
@@ -197,6 +192,10 @@ methodDraw.addExtension("elementTracker", function(S) {
 
     function trackElements() {
 
+        //Finite-precision calculations. Precision is determined by the trackTolerance var. 
+        var trackTolerance = 0.01;
+        var compPrecision = 2; // Max 12, min 0. Highest values = high precision but slow performance.
+
         //Check if grouped and selected in which case use Ungroup from svg-canvas.js. DOES NOT WORK IN IE11
 
         try {
@@ -213,10 +212,6 @@ methodDraw.addExtension("elementTracker", function(S) {
             return;
 
         }
-
-        //Finite-precision calculations. Precision is determined by the trackTolerance var. 
-        var trackTolerance = 0.01;
-        var compPrecision = 2; // Max 12, min 0. Highest values = high precision but slow performance.
 
         //Get value from input element 
         var trackingAmount = parseInt($("#tracking").val());
@@ -278,16 +273,29 @@ methodDraw.addExtension("elementTracker", function(S) {
     return {
         name: "elementTracker",
         svgicons: "extensions/vectorText-icon.xml", //this is not needed since we don't need an icon but the extension throws error without it.
-        context_tools: [],
-        callback: function() { //Method-draw specific classes for drag-inputs.Attach all the necessary classes and CSS mods here.
-            $('#selected_panel').prepend("<label class='draginput' data-value='-1'><input id='tracking' class='attr_changer' data-title='Control spacing between objects' size='1' data-attr='x' pattern='[0-9]*' autocomplete='off' readonly='readonly' data-scale='0.5' data-domain='70'data-cursor='false'><span>Tracking</span></label>");
-            $('#tracking').dragInput({ //Initialize using MethodDraw drag input - position of tool in panel depends on extension loading order in index.html
-                min: -15,
-                max: 15,
-                step: 1,
-                callback: debouncer(debouncer_func, 250),
-                cursor: false
-            }); //init a Method-draw drag input. onChange call function debouncer to start tracking
+        callback: function(extElementPosition) {
+
+              //jQuery extension function for positioning HTML elements in context menu - Do not remove/modify this if using this extension as template for new extensions
+              $.fn.nthorfirst = function (path, i) {
+              var elems = this.find(path);
+              if (elems.length > i) return elems.eq(i);
+              else return this;
+              }
+
+            //HTML element config options.
+            var attachToPanel = 'selected_panel'; //Do not remove this if using this extension as template for new extensions. Just modify it accordingly
+            var extElementConfig={extElementPosition :1,extElementId:'tracking',extElementTitle:'Tracking', extElementMin:-15, 
+            extElementMax:15,extElementStep:1,callback:debouncer(debouncer_func, 250),extElementCursor:true}; //Config options for element. //Do not remove this if using this as template for new extensions. Just modify it accordingly
+
+            //HTML append template for adding a drag-input type html elem. Do not remove/modify this if using this extension as template for new extensions with HTML elements of input type
+            $('#'+attachToPanel).nthorfirst('> *',extElementConfig.extElementPosition).before("<label><input id='tracking'><span>"+extElementConfig.extElementTitle+"</span></label>");
+            $('#'+extElementConfig.extElementId).dragInput({ //Initialize using MethodDraw drag input - position of tool in panel depends on extension loading order in index.html
+                min: extElementConfig.extElementMin,
+                max: extElementConfig.extElementMax,
+                step: extElementConfig.extElementStep,
+                callback: extElementConfig.callback,
+                cursor: extElementConfig.extElementCursor
+            }); //init a Method-draw drag input template. Do not remove/modify this if using this extension as template for new extensions
             
         },
 
@@ -298,8 +306,11 @@ methodDraw.addExtension("elementTracker", function(S) {
 
 
             if (multiselected.elems.length < 2) {
+                $('#tracking').parent().css('display','none');
                 return; //If only 1 item is selected do nothing. We only track 2 items or more.
             } else {
+
+                $('#tracking').parent().css('display','block');
 
                 selectedElems = multiselected.elems; // copy selected elements to selectedElems. When ''tracking'' input element changes fire the tracking.
             }
