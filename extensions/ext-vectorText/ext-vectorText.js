@@ -47,13 +47,13 @@ methodDraw.addExtension("vectorText", function(S) {
     //Global variables
     //Define the fonts from the folder - format: actual path / display name
     var loadedFonts = [
-        ["extensions/vectorTextFonts/laplac.ttf", "LaPlac"],
-        ["extensions/vectorTextFonts/Roboto-Black.ttf", "Roboto-Black"],
-        ["extensions/vectorTextFonts/Fingbanger.otf", "Fingbanger"]
+        ["extensions/ext-vectorText/vectorTextFonts/laplac.ttf", "LaPlac"],
+        ["extensions/ext-vectorText/vectorTextFonts/Roboto-Black.ttf", "Roboto-Black"],
+        ["extensions/ext-vectorText/vectorTextFonts/Fingbanger.otf", "Fingbanger"]
     ];
 
     //Startup Variables
-    var startupFont = 'extensions/vectorTextFonts/Fingbanger.otf';
+    var startupFont = 'extensions/ext-vectorText/vectorTextFonts/Fingbanger.otf';
     var resultFontSize = 50; //Startup font-size. Rec value is 30-60.
     var fontSize = 120; //Only for preview on canvas
     var resultSvgFill = "#4880FF"; //You can change this into any hex color value. Fill color of resultant SVG elements.
@@ -349,14 +349,14 @@ methodDraw.addExtension("vectorText", function(S) {
 
     return {
         name: "vectorText",
-        svgicons: "extensions/vectorText-icon.xml",
+        svgicons: "extensions/ext-vectorText/vectorText-icon.xml",
         buttons: [{
             id: "tool_vectorText",
             type: "mode",
             title: "Vector Text Tool",
             position: 9,
             key: "Y",
-            icon: "extensions/tool_vectorText.png",
+            icon: "extensions/ext-vectorText/tool_vectorText.png",
             events: {
                 "click": function() {
                     svgCanvas.setMode("vectorText");
