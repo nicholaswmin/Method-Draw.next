@@ -24,7 +24,7 @@ of input context tool. If used as template remember to include all necessary fun
 
 -----------------------
 
-IMPORTANT NOTE!!: This extension uses a custom-method defined in svgcanvas.js I will add it here and you can paste it below moveSelectedElements method in src/svgcanvas.js
+IMPORTANT NOTE (applies only to this exte!!: This extension uses a custom-method defined in svgcanvas.js I will add it here and you can paste it below moveSelectedElements method in src/svgcanvas.js
 
 //Addition --MOVE THIS TO SVGCANVAS.JS-- - Used by ext-elementTracker.js to move single elements
 
@@ -94,8 +94,6 @@ methodDraw.addExtension("elementTracker", function(S) {
 
 
     var selectedElems = [];//This gets filled with selected elements on selectedChanged at the end of this file.
-
-
 
 
     //Debouncer utility function.
