@@ -285,7 +285,7 @@ methodDraw.addExtension("elementTracker", function(S) {
                 min: -15,
                 max: 15,
                 step: 1,
-                callback: debouncer(debouncer_func, 1000),
+                callback: debouncer(debouncer_func, 250),
                 cursor: false
             }); //init a Method-draw drag input. onChange call function debouncer to start tracking
             
