@@ -280,7 +280,7 @@ methodDraw.addExtension("elementTracker", function(S) {
         svgicons: "extensions/vectorText-icon.xml", //this is not needed since we don't need an icon but the extension throws error without it.
         context_tools: [],
         callback: function() { //Method-draw specific classes for drag-inputs.Attach all the necessary classes and CSS mods here.
-            $('#selected_panel > label:nth-child(0)').after("<label class='draginput' data-value='-1'><input id='tracking' class='attr_changer' data-title='Control spacing between objects' size='1' data-attr='x' pattern='[0-9]*' autocomplete='off' readonly='readonly' data-scale='0.5' data-domain='70'data-cursor='false'><span>Tracking</span></label>");
+            $('#selected_panel').append("<label class='draginput' data-value='-1'><input id='tracking' class='attr_changer' data-title='Control spacing between objects' size='1' data-attr='x' pattern='[0-9]*' autocomplete='off' readonly='readonly' data-scale='0.5' data-domain='70'data-cursor='false'><span>Tracking</span></label>");
             $('#tracking').dragInput({
                 min: -15,
                 max: 15,
