@@ -281,7 +281,7 @@ methodDraw.addExtension("elementTracker", function(S) {
         context_tools: [],
         callback: function() { //Method-draw specific classes for drag-inputs.Attach all the necessary classes and CSS mods here.
             $('#selected_panel').prepend("<label class='draginput' data-value='-1'><input id='tracking' class='attr_changer' data-title='Control spacing between objects' size='1' data-attr='x' pattern='[0-9]*' autocomplete='off' readonly='readonly' data-scale='0.5' data-domain='70'data-cursor='false'><span>Tracking</span></label>");
-            $('#tracking').dragInput({
+            $('#tracking').dragInput({ //Initialize using MethodDraw drag input - position of tool in panel depends on extension loading order in index.html
                 min: -15,
                 max: 15,
                 step: 1,
