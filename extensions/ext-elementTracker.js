@@ -278,16 +278,9 @@ methodDraw.addExtension("elementTracker", function(S) {
     return {
         name: "elementTracker",
         svgicons: "extensions/vectorText-icon.xml", //this is not needed since we don't need an icon but the extension throws error without it.
-        context_tools: [{
-            type: "input",
-            panel: "multiselected_panel", //where to attach the input element
-            title: "Add spacing between elements",
-            id: "tracking",
-            label: "Tracking"
-        }],
+        context_tools: [],
         callback: function() { //Method-draw specific classes for drag-inputs.Attach all the necessary classes and CSS mods here.
-            $('#tracking').parent().addClass('draginput');
-            $('#tracking').addClass('attr-changer');
+            $('#tool_angle').after("<label class='draginput' data-value='-1'><input id='tracking' class='attr_changer' data-title='Control spacing between objects' size='1' data-attr='x' pattern='[0-9]*' autocomplete='off' readonly='readonly' data-scale='0.5' data-domain='70'data-cursor='false'><span>Tracking</span></label>");
             $('#tracking').dragInput({
                 min: -15,
                 max: 15,
@@ -295,10 +288,7 @@ methodDraw.addExtension("elementTracker", function(S) {
                 callback: debouncer(debouncer_func, 1000),
                 cursor: false
             }); //init a Method-draw drag input. onChange call function debouncer to start tracking
-            $('#multiselected_panel').prepend($('#tracking').parent()); //reattach input to top of multiselected panel otherwise it goes to bottom and looks ugly.
-            $('.hidable').remove(); //alignment buttons get in the way. remove the hidable and put clear:both to the buttons below our tracking input.
-            $('.toolset.align_buttons').css("clear", "both");
-            $('#multiselected_panel').css("margin-top", "10px");
+            
         },
 
 
