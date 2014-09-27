@@ -14,6 +14,9 @@
  */
 "use strict";
 
+
+//Define extension --------------------------------------------------------------------------------------------------------------------------------------
+
 methodDraw.addExtension("vectorText", function(S) {
     var svgcontent = S.svgcontent,
         svgns = "http://www.w3.org/2000/svg",
@@ -33,7 +36,7 @@ methodDraw.addExtension("vectorText", function(S) {
     }
 
 
-    //Global variables
+//Global variables --------------------------------------------------------------------------------------------------------------------------------------
     //Define the fonts from the folder - format: actual path / display name
     var loadedFonts = [
         ["extensions/ext-vectorText/vectorTextFonts/laplac.ttf", "LaPlac"],
@@ -48,7 +51,7 @@ methodDraw.addExtension("vectorText", function(S) {
     var resultSvgFill = "#4880FF"; //You can change this into any hex color value. Fill color of resultant SVG elements.
 
 
-    //Append a Font Selector Window to the editor HTML
+    //Append necessary HTML elements (if it's a left-toolbar button define it according to svg-edit extension docs in return object.)
     $('body').append("<div id='fontSelectorDiv'> <div class='container'> <div class='explain'> Select a font from the menu below and type in the letters you want to import to your canvas. </div> <input id='file' type='file' > <span class='info' id='font-name'>Fingbanger</span> <select id='fontSelector'> </select> <input id='fontTxtInput' type='text' class='text-input' value='Hello, World!' autofocus id='textField'> <input type='range' min='6' max='500' step='2' value='150' id='font-size-range' autocomplete='off'><span id='fontSize'>150</span> <canvas id='preview' width='940' height='300' class='text'></canvas> <div id='message'></div> <label> <input id='drawPointsCheckBox' type='checkbox'>Draw Points</label> <label> <input id='drawMetricsCheckBox' type='checkbox'>Draw Metrics</label> <label> <input id='kerningCheckBox' type='checkbox'>Kerning</label> <div id='glyphs'></div><hr id='fontSelectorLine'><button type='button' id='placeFontBtn'>Place letters</button><button type='button' id='cancelFontBtn'>Cancel</button></div>");
 
     function getStyle(opts) {
@@ -58,6 +61,13 @@ methodDraw.addExtension("vectorText", function(S) {
         var tool = $('#tool_vectorText');
 
     }
+
+
+
+
+
+
+//Functions for extension-----------------------------------------------------------------------------------------------------------------------------
 
     //Append fonts into font selector dropdown
     for (var i = loadedFonts.length - 1; i >= 0; i--) {
@@ -155,7 +165,8 @@ methodDraw.addExtension("vectorText", function(S) {
 
             svgCanvas.addToSelection(movableElems.reverse(), false);
             svgCanvas.moveSelectedElements(this.canvasX, this.canvasY, true);
-            $("#fontSelectorDiv").fadeOut('fast');
+
+            fontAppendSuccess()
 
         }
         this.doSnap = function(path) {
@@ -321,6 +332,14 @@ methodDraw.addExtension("vectorText", function(S) {
         return (v * (1.0 - strength)) + (strength * Math.round(v / distance) * distance);
     }
 
+
+
+
+    function fontAppendSuccess(){
+        $("#fontSelectorDiv").fadeOut('fast');
+        svgCanvas.setMode('select');
+    }
+
     //Click handlers
 
     $("#cancelFontBtn").click(function() {
@@ -347,6 +366,9 @@ methodDraw.addExtension("vectorText", function(S) {
     $('#kerningCheckBox').click(function() {
         kerningChanged(this, false);
     })
+
+
+//Extension Return object----------------------------------------------------------------------------------------------------------------------------------
 
     return {
         name: "vectorText",
