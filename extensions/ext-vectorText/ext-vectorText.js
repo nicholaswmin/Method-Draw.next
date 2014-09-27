@@ -328,11 +328,16 @@ methodDraw.addExtension("vectorText", function(S) {
 
 
 
-
+    //On succesful append of fonts to svgCanvas set select mode and fade out the fontSelectorDiv
     function fontAppendSuccess(){
-        $("#fontSelectorDiv").fadeOut('fast');
-        svgCanvas.setMode('select');
-        methodDraw.setSelectMode();
+        $("#fontSelectorDiv").fadeOut('fast'); 
+        //Copied function from method-draw.js that sets select mode
+        var curr = $('.tool_button_current');
+                if(curr.length && curr[0].id !== 'tool_select') {
+                    curr.removeClass('tool_button_current').addClass('tool_button');
+                    $('#tool_select').addClass('tool_button_current').removeClass('tool_button');
+                }
+                svgCanvas.setMode('select');
     }
 
     //Click handlers
