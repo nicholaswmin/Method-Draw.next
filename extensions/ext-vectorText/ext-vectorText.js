@@ -332,7 +332,7 @@ methodDraw.addExtension("vectorText", function(S) {
     function fontAppendSuccess(){
         $("#fontSelectorDiv").fadeOut('fast');
         svgCanvas.setMode('select');
-        setSelectMode();
+        svgCanvas.setSelectMode();
     }
 
     //Click handlers
