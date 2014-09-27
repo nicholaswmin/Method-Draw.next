@@ -25,6 +25,17 @@ methodDraw.addExtension("vectorText", function(S) {
             svgCanvas.undoMgr.addCommandToHistory(cmd);
         }
 
+    
+            //jQuery extension function for positioning HTML elements in context menu - Do not remove/modify this 
+              $.fn.nthorfirst = function (path, i) {
+              var elems = this.find(path);
+              if (elems.length > i) return elems.eq(i);
+              else return this;
+              }
+
+     //Append a Font Selector Window to the editor HTML
+    $('body').append("<div id='fontSelectorDiv'> <div class='container'> <div class='explain'> Select a font from the menu below and type in the letters you want to import to your canvas. </div> <input id='file' type='file' > <span class='info' id='font-name'>Fingbanger</span> <select id='fontSelector'> </select> <input id='fontTxtInput' type='text' class='text-input' value='Hello, World!' autofocus id='textField'> <input type='range' min='6' max='500' step='2' value='150' id='font-size-range' autocomplete='off'><span id='fontSize'>150</span> <canvas id='preview' width='940' height='300' class='text'></canvas> <div id='message'></div> <label> <input id='drawPointsCheckBox' type='checkbox'>Draw Points</label> <label> <input id='drawMetricsCheckBox' type='checkbox'>Draw Metrics</label> <label> <input id='kerningCheckBox' type='checkbox'>Kerning</label> <div id='glyphs'></div><hr id='fontSelectorLine'><button type='button' id='placeFontBtn'>Place letters</button><button type='button' id='cancelFontBtn'>Cancel</button></div>");
+
     function getStyle(opts) {
         // if we are in vectorText mode, we don't want to disable tool - is this really necessary? It was copied from ext-eyedropper and modified.
         var mode = svgCanvas.getMode();
@@ -51,6 +62,12 @@ methodDraw.addExtension("vectorText", function(S) {
 
 
 
+
+
+
+    
+
+   
 
     //Append fonts into font selector dropdown
     for (var i = loadedFonts.length - 1; i >= 0; i--) {
@@ -345,11 +362,6 @@ methodDraw.addExtension("vectorText", function(S) {
                 }
             }
         }],
-        callback: function() { 
-
-            //Append a Font Selector Window to the editor HTML
-            $('body').append("<div id='fontSelectorDiv'> <div class='container'> <div class='explain'> Select a font from the menu below and type in the letters you want to import to your canvas. </div> <input id='file' type='file' > <span class='info' id='font-name'>Fingbanger</span> <select id='fontSelector'> </select> <input id='fontTxtInput' type='text' class='text-input' value='Hello, World!' autofocus id='textField'> <input type='range' min='6' max='500' step='2' value='150' id='font-size-range' autocomplete='off'><span id='fontSize'>150</span> <canvas id='preview' width='940' height='300' class='text'></canvas> <div id='message'></div> <label> <input id='drawPointsCheckBox' type='checkbox'>Draw Points</label> <label> <input id='drawMetricsCheckBox' type='checkbox'>Draw Metrics</label> <label> <input id='kerningCheckBox' type='checkbox'>Kerning</label> <div id='glyphs'></div><hr id='fontSelectorLine'><button type='button' id='placeFontBtn'>Place letters</button><button type='button' id='cancelFontBtn'>Cancel</button></div>");
-        },
 
         mouseDown: function(opts) {
             var mode = svgCanvas.getMode();
