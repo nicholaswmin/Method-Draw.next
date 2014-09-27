@@ -23,21 +23,10 @@ methodDraw.addExtension("vectorText", function(S) {
         ChangeElementCommand = svgedit.history.ChangeElementCommand,
         addToHistory = function(cmd) {
             svgCanvas.undoMgr.addCommandToHistory(cmd);
-        },
-        currentStyle = {
-            fillPaint: "red",
-            fillOpacity: 1.0,
-            strokePaint: "black",
-            strokeOpacity: 1.0,
-            strokeWidth: 5,
-            strokeDashArray: null,
-            opacity: 1.0,
-            strokeLinecap: 'butt',
-            strokeLinejoin: 'miter'
-        };
+        }
 
     function getStyle(opts) {
-        // if we are in eyedropper mode, we don't want to disable the eye-dropper tool
+        // if we are in vectorText mode, we don't want to disable tool - is this really necessary? It was copied from ext-eyedropper and modified.
         var mode = svgCanvas.getMode();
         if (mode == "vectorText") return;
         var tool = $('#tool_vectorText');
@@ -68,7 +57,7 @@ methodDraw.addExtension("vectorText", function(S) {
     
 
     //Append a Font Selector Window to the editor HTML
-    $('body').append("<div id='fontSelectorDiv' style='position:relative; display:none; width:25%; height:80%; padding:2%; background-color:#2F2F2C; margin:0 auto; margin-right:-1%; border-radius:3px; border:2px solid #4B80FF; z-index:9999;' <div class='container'> <div class='explain' style='color:white; font-size:12px; font-weight:bold; padding:1%;'> Select a font from the menu below and type in the letters you want to import to your canvas. </div> <input id='file' type='file' style='display:none'> <span class='info' id='font-name' style='display:none'>Fingbanger</span> <select id='fontSelector' style='display:block; margin:1%;'> </select> <input id='fontTxtInput' type='text' class='text-input' style='margin-left:1%; width:80%; height:10%; font-size:16px; color:white; font-weight:bold; border-radius:3px; background-color:#2F2F2C; border:1px solid #4B80FF;' value='Hello, World!' autofocus id='textField'> <input type='range' min='6' max='500' step='2' value='150' id='font-size-range' autocomplete='off' style='display:none'><span id='fontSize' style='display:none'>150</span> <canvas id='preview' width='940' height='300' class='text' style='width:80%; margin-left:1%; margin-top:1%; border-radius:3px; background-color:#2F2F2C; border:1px solid #4B80FF;'></canvas> <div id='message'></div> <label> <input id='drawPointsCheckBox' type='checkbox' style='margin-left:1%;'>Draw Points</label> <label> <input id='drawMetricsCheckBox' type='checkbox' style='margin-left:1%;'>Draw Metrics</label> <label> <input id='kerningCheckBox' type='checkbox' style='margin-left:1%;'>Kerning</label> <div id='glyphs' style='display:none;'></div><hr style='margin-left:1%; width:80%;'><button type='button' id='placeFontBtn'>Place letters</button><button type='button' id='cancelFontBtn'>Cancel</button></div>");
+    $('body').append("<div id='fontSelectorDiv'> <div class='container'> <div class='explain'> Select a font from the menu below and type in the letters you want to import to your canvas. </div> <input id='file' type='file' > <span class='info' id='font-name'>Fingbanger</span> <select id='fontSelector'> </select> <input id='fontTxtInput' type='text' class='text-input' value='Hello, World!' autofocus id='textField'> <input type='range' min='6' max='500' step='2' value='150' id='font-size-range' autocomplete='off'><span id='fontSize'>150</span> <canvas id='preview' width='940' height='300' class='text'></canvas> <div id='message'></div> <label> <input id='drawPointsCheckBox' type='checkbox'>Draw Points</label> <label> <input id='drawMetricsCheckBox' type='checkbox'>Draw Metrics</label> <label> <input id='kerningCheckBox' type='checkbox'>Kerning</label> <div id='glyphs'></div><hr id='fontSelectorLine'><button type='button' id='placeFontBtn'>Place letters</button><button type='button' id='cancelFontBtn'>Cancel</button></div>");
 
     //Append fonts into font selector dropdown
     for (var i = loadedFonts.length - 1; i >= 0; i--) {
