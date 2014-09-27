@@ -54,13 +54,7 @@ methodDraw.addExtension("vectorText", function(S) {
     //Append necessary HTML elements (if it's a left-toolbar button define it according to svg-edit extension docs in return object.)
     $('body').append("<div id='fontSelectorDiv'> <div class='container'> <div class='explain'> Select a font from the menu below and type in the letters you want to import to your canvas. </div> <input id='file' type='file' > <span class='info' id='font-name'>Fingbanger</span> <select id='fontSelector'> </select> <input id='fontTxtInput' type='text' class='text-input' value='Hello, World!' autofocus id='textField'> <input type='range' min='6' max='500' step='2' value='150' id='font-size-range' autocomplete='off'><span id='fontSize'>150</span> <canvas id='preview' width='940' height='300' class='text'></canvas> <div id='message'></div> <label> <input id='drawPointsCheckBox' type='checkbox'>Draw Points</label> <label> <input id='drawMetricsCheckBox' type='checkbox'>Draw Metrics</label> <label> <input id='kerningCheckBox' type='checkbox'>Kerning</label> <div id='glyphs'></div><hr id='fontSelectorLine'><button type='button' id='placeFontBtn'>Place letters</button><button type='button' id='cancelFontBtn'>Cancel</button></div>");
 
-    function getStyle(opts) {
-        // if we are in vectorText mode, we don't want to disable tool - is this really necessary? It was copied from ext-eyedropper and modified.
-        var mode = svgCanvas.getMode();
-        if (mode == "vectorText") return;
-        var tool = $('#tool_vectorText');
 
-    }
 
 
 
