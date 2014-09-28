@@ -112,7 +112,7 @@ methodDraw.addExtension("elementTracker", function(S) {
 
             //HTML element config options.
             var attachToPanel = 'selected_panel'; //Type here the panel you want to attach the element to.
-            var extElementConfig1={extElementPosition :1,extElementId:'tracking',extElementTitle:'Tracking'}; //Config options for element. Adjust accordingly
+            var extElementConfig1={extElementPosition :1,extElementId:'tracking',extElementTitle:'Tracking',extElementInitVal:0}; //Config options for element. Adjust accordingly
 
             //HTML append template for adding a drag-input type html elem. Modify only min,max,step,callback and cursor.
             $('#'+attachToPanel).nthorfirst('> *',extElementConfig1.extElementPosition).before("<label><input id='tracking'><span>"+extElementConfig1.extElementTitle+"</span></label>");
@@ -123,9 +123,12 @@ methodDraw.addExtension("elementTracker", function(S) {
                 callback: debouncer(debouncer_func, 250),
                 cursor: false
             }); //init a Method-draw drag input template. Do not remove/modify this 
-
+            $('#'+extElementConfig1.extElementId).val(extElementConfig1.extElementInitVal);
             //The function to call when dragging the input is declared in the callback property of extElementConfig.
             //To add more inputs declare another extElementConfig object,e.g 'extElementConfig2' and copy/paste the append function(nthorfirst)
+
+
+
 
 
 
