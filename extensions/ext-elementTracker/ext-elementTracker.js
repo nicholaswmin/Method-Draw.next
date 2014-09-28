@@ -20,6 +20,10 @@
 5) Return object with ability to use svg-edit events
 
 
+
+Note: This is a left-toolbar extension which means it must strictly comply with the standards introduced here: https://code.google.com/p/svg-edit/wiki/ExtensionDocs
+Note: This type of extensions must also be declared in method-draw.js in order to function properly. 
+
 -----------------------
 
 IMPORTANT NOTE (applies only to this exte!!: This extension uses a custom-method defined in svgcanvas.js I will add it here and you can paste it below moveSelectedElements method in src/svgcanvas.js
