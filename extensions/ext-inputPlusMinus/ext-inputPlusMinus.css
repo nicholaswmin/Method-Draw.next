@@ -1,0 +1,87 @@
+.dragInputClickMinus {
+    
+    position: absolute;
+    width: 49%;
+    height: 25%;
+    bottom: 0;
+    left: 0;
+    z-index: 9999999999999999999999999;
+    cursor: pointer;
+    border-radius: 0px 0px 0px 4px;
+    background-color: #4F4F4F;
+    text-align: center;
+    line-height: 140%;
+    font-weight: 900;
+    color: white;
+    font-family: monospace;
+}
+
+.dragInputClickPlus {
+
+	    position: absolute;
+    width: 49%;
+    height: 25%;
+    bottom: 0;
+    right: 0;
+    z-index: 9999999999999999999999999;
+    cursor: pointer;
+    background-color: #4F4F4F;
+    border-radius: 0px 0px 4px 0px;
+    text-align: center;
+    line-height: 140%;
+    font-weight: 900;
+    color: white;
+    font-family: monospace;
+
+}
+
+#dragInputClickPlusRotation {
+
+
+
+	    position: absolute;
+    width: 28%;
+    height: 25%;
+    bottom: 0;
+    right: 0;
+    z-index: 9999999999999999999999999;
+    background-color: #4F4F4F;
+    border-radius: 28px 0px 4px 0px;
+    text-align: center;
+    line-height: 140%;
+    font-weight: 900;
+    color: white;
+    font-family: monospace;
+    cursor: pointer;
+
+
+
+}
+
+#dragInputClickMinusRotation {
+
+
+	    position: absolute;
+    width: 28%;
+    height: 25%;
+    bottom: 0;
+    left: 0;
+    z-index: 9999999999999999999999999;
+    cursor: pointer;
+    border-radius: 0px 28px 0px 4px;
+    background-color: #4F4F4F;
+    text-align: center;
+    line-height: 140%;
+    font-weight: 900;
+    color: white;
+    font-family: monospace;
+
+
+}
+
+#dragInputClickPlusRotation:hover,
+#dragInputClickMinusRotation:hover,
+.dragInputClickMinus:hover,
+.dragInputClickPlus:hover{
+	color:#4861E7;
+}
