@@ -1,3 +1,8 @@
+input:-webkit-autofill {
+    color: transparent; !important;
+}
+
+
 #myCanvas{
   display:none;
 }
