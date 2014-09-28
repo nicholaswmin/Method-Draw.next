@@ -105,6 +105,9 @@ methodDraw.addExtension("inputPlusMinus", function(S) {
                 $('#' + attachId).parent().append("<div id='dragInputClickPlusRotation' class='dragInputClickPlus'>+</div>")
 
             }
+             else if(attachId==="zoom"){
+                //do nothing - appending +/- to zoom looks really ugly
+            }
             else{
 
    
