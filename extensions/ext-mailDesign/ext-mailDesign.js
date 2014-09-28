@@ -78,7 +78,7 @@ methodDraw.addExtension("mailDesign", function(S) {
         extElementId: 'mailOrderBtn'
     }; //Config options for element. Add a position and a unique id.
     //Template for adding a button - do not remove or modify this.
-    $('#' + attachToPanel).nthorfirst('> *', extElementConfig1.extElementPosition).before("<div id='placeOrderBtnWrapper' style=' margin-top: 1%;'><div id='" + extElementConfig1.extElementId + "' style='position: relative;width: 141px;height: 47px;background-color: #3F3F3C;border-radius: 3px;text-align: center;vertical-align: middle;display: table-cell;color: #4880FF;font-weight: 400;cursor:pointer'>Place Order</div></div>");
+    $('#' + attachToPanel).nthorfirst('> *', extElementConfig1.extElementPosition).before("<div id='placeOrderBtnWrapper' ><div class='orderBtn' id='" + extElementConfig1.extElementId + "'>Place Order</div></div>");
     $('#' + extElementConfig1.extElementId).click(function() {
         $("#formOverlay,#form-div").fadeIn();
         resetForm();

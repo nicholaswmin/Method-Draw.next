@@ -1,223 +1,220 @@
-
-.formOverlay
-{
-  display:none;
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:200%;
-  background-color:rgba(0,0,0,0.3);
-  z-index:999999999999999999999999999999999999999999999999;
+#placeOrderBtnWrapper {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 100px;
 }
 
-.formErrMsg
-{
-  width:100%;
-  margin-bottom:15px;
-  height:15px;
-  font-family:Helvetica, Arial, sans-serif;
-  color:#ff4949;
-  font-weight:100;
-  font-size:16px;
+.orderBtn {
+    position: relative;
+    width: 141px;
+    height: 47px;
+    background-color: #3F3F3C;
+    border-radius: 3px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    color: #4880FF;
+    font-weight: 400;
+    cursor: pointer;
 }
 
-#closeFormBtn
-{
-  position:relative;
-  float:right;
-  height:auto;
-  width:auto;
-  margin-bottom:10px;
-  font-size:16px;
-  font-family:Helvetica, Arial, sans-serif;
-  font-weight:700;
-  color:#4880FF;
-  cursor:pointer;
+.formOverlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 999999999999999999999999999999999999999999999999;
 }
 
-#form-div
-{
-  display:none;
-  background-color:#2F2F2C;
-  padding-left:35px;
-  padding-right:35px;
-  padding-top:35px;
-  padding-bottom:50px;
-  width:450px;
-  float:left;
-  left:50%;
-  position:absolute;
-  margin-top:0;
-  margin-left:-260px;
-  -moz-border-radius:7px;
-  -webkit-border-radius:7px;
-  z-index:9999999999999999;
-  -webkit-font-smoothing:antialiased;
+.formErrMsg {
+    width: 100%;
+    margin-bottom: 15px;
+    height: 15px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #ff4949;
+    font-weight: 100;
+    font-size: 16px;
 }
 
-#thanksDiv
-{
-  display:none;
+#closeFormBtn {
+    position: relative;
+    float: right;
+    height: auto;
+    width: auto;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    color: #4880FF;
+    cursor: pointer;
 }
 
-.feedback-input
-{
-  color:#3c3c3c;
-  font-family:Helvetica, Arial, sans-serif;
-  font-weight:500;
-  font-size:12px;
-  border-radius:0;
-  line-height:22px;
-  background-color:#fbfbfb;
-  padding:13px 13px 13px 54px;
-  margin-bottom:10px;
-  width:100%;
-  -webkit-box-sizing:border-box;
-  -moz-box-sizing:border-box;
-  -ms-box-sizing:border-box;
-  box-sizing:border-box;
-  border:3px solid rgba(0,0,0,0);
+#form-div {
+    display: none;
+    background-color: #2F2F2C;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top: 35px;
+    padding-bottom: 50px;
+    width: 450px;
+    float: left;
+    left: 50%;
+    position: absolute;
+    margin-top: 0;
+    margin-left: -260px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    z-index: 9999999999999999;
+    -webkit-font-smoothing: antialiased;
 }
 
-.feedback-input:focus
-{
-  background:#fff;
-  box-shadow:0;
-  border:3px solid #4880FF;
-  color:#4880FF;
-  outline:none;
-  padding:13px 13px 13px 54px;
+#thanksDiv {
+    display: none;
 }
 
-.focused
-{
-  color:#4880FF;
-  border:#4880FF solid 3px;
+.feedback-input {
+    color: #3c3c3c;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    border-radius: 0;
+    line-height: 22px;
+    background-color: #fbfbfb;
+    padding: 13px 13px 13px 54px;
+    margin-bottom: 10px;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 3px solid rgba(0,0,0,0);
 }
 
-#address
-{
-  background-image:url(icons/home-50.png);
-  background-size:30px 30px;
-  background-position:11px 8px;
-  background-repeat:no-repeat;
+.feedback-input:focus {
+    background: #fff;
+    box-shadow: 0;
+    border: 3px solid #4880FF;
+    color: #4880FF;
+    outline: none;
+    padding: 13px 13px 13px 54px;
 }
 
-textarea
-{
-  width:100%;
-  height:80px;
-  line-height:150%;
-  resize:vertical;
+.focused {
+    color: #4880FF;
+    border: #4880FF solid 3px;
 }
 
-.form input:hover,.form textarea:hover,.form input:focus,.form textarea:focus
-{
-  background-color:#FFF;
+#address {
+    background-image: url(icons/home-50.png);
+    background-size: 30px 30px;
+    background-position: 11px 8px;
+    background-repeat: no-repeat;
 }
 
-#thanksCloseBtn,#formSubmitBtn
-{
-  font-family:Montserrat, Arial, Helvetica, sans-serif;
-  float:left;
-  width:100%;
-  border:#fbfbfb solid 4px;
-  cursor:pointer;
-  background-color:#4880FF;
-  color:#FFF;
-  font-size:20px;
-  padding-top:22px;
-  padding-bottom:22px;
-  -webkit-transition:all .3s;
-  -moz-transition:all .3s;
-  transition:all .3s;
-  margin-top:-4px;
-  font-weight:700;
-  height:29px;
-  text-align:center;
-  line-height:29px;
+textarea {
+    width: 100%;
+    height: 80px;
+    line-height: 150%;
+    resize: vertical;
 }
 
-#thanksCloseBtn:hover,#formSubmitBtn:hover
-{
-  background-color:rgba(0,0,0,0);
-  color:#4880FF;
+.form input:hover,.form textarea:hover,.form input:focus,.form textarea:focus {
+    background-color: #FFF;
 }
 
-.submit:hover
-{
-  color:#4880FF;
+#thanksCloseBtn,#formSubmitBtn {
+    font-family: Montserrat, Arial, Helvetica, sans-serif;
+    float: left;
+    width: 100%;
+    border: #fbfbfb solid 4px;
+    cursor: pointer;
+    background-color: #4880FF;
+    color: #FFF;
+    font-size: 20px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    transition: all .3s;
+    margin-top: -4px;
+    font-weight: 700;
+    height: 29px;
+    text-align: center;
+    line-height: 29px;
 }
 
-.ease
-{
-  width:0;
-  height:74px;
-  background-color:#fbfbfb;
-  -webkit-transition:.3s ease;
-  -moz-transition:.3s ease;
-  -o-transition:.3s ease;
-  -ms-transition:.3s ease;
-  transition:.3s ease;
+#thanksCloseBtn:hover,#formSubmitBtn:hover {
+    background-color: rgba(0,0,0,0);
+    color: #4880FF;
 }
 
-.submit:hover .ease
-{
-  width:100%;
-  background-color:#FFF;
+.submit:hover {
+    color: #4880FF;
 }
 
-.thanksMsg
-{
-  color:#FFF;
-  font-weight:900;
-  font-size:12pt;
-  height:40px;
-  width:100%;
-  margin-top:10%;
-  border-top:1px solid #FFF;
-  padding-top:5%;
+.ease {
+    width: 0;
+    height: 74px;
+    background-color: #fbfbfb;
+    -webkit-transition: .3s ease;
+    -moz-transition: .3s ease;
+    -o-transition: .3s ease;
+    -ms-transition: .3s ease;
+    transition: .3s ease;
 }
 
-.thanksMsg2
-{
-  padding:3% 0;
-  color:#FFF;
+.submit:hover .ease {
+    width: 100%;
+    background-color: #FFF;
 }
 
-#name,#name:focus
-{
-  background-image:url(icons/user-50.png);
-  background-size:30px 30px;
-  background-position:11px 8px;
-  background-repeat:no-repeat;
+.thanksMsg {
+    color: #FFF;
+    font-weight: 900;
+    font-size: 12pt;
+    height: 40px;
+    width: 100%;
+    margin-top: 10%;
+    border-top: 1px solid #FFF;
+    padding-top: 5%;
 }
 
-#email,#email:focus
-{
-  background-image:url(icons/message-50.png);
-  background-size:30px 30px;
-  background-position:11px 8px;
-  background-repeat:no-repeat;
+.thanksMsg2 {
+    padding: 3% 0;
+    color: #FFF;
 }
 
-#city,#city:focus
-{
-  background-image:url(icons/city_bench-50.png);
-  background-size:30px 30px;
-  background-position:11px 8px;
-  background-repeat:no-repeat;
+#name,#name:focus {
+    background-image: url(icons/user-50.png);
+    background-size: 30px 30px;
+    background-position: 11px 8px;
+    background-repeat: no-repeat;
+}
+
+#email,#email:focus {
+    background-image: url(icons/message-50.png);
+    background-size: 30px 30px;
+    background-position: 11px 8px;
+    background-repeat: no-repeat;
+}
+
+#city,#city:focus {
+    background-image: url(icons/city_bench-50.png);
+    background-size: 30px 30px;
+    background-position: 11px 8px;
+    background-repeat: no-repeat;
 }
 
 @media only screen and max-width 580px {
-  #form-div
-  {
-    left:3%;
-    margin-right:3%;
-    width:88%;
-    margin-left:0;
-    padding-left:3%;
-    padding-right:3%;
-  }
+    #form-div {
+        left: 3%;
+        margin-right: 3%;
+        width: 88%;
+        margin-left: 0;
+        padding-left: 3%;
+        padding-right: 3%;
+    }
 }
