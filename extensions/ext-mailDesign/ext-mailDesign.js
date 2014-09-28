@@ -97,6 +97,12 @@ methodDraw.addExtension("mailDesign", function(S) {
 
 
 
+    //Appending a hidden canvas element as well - used by canvg for exporting a PNG - defined in extensions css file as display:none
+    $('body').append("<canvas id='myCanvas' width='400px' height='200px' style='display:none'></canvas>");
+
+
+
+
 
 
 
