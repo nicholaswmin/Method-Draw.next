@@ -10,16 +10,14 @@
  * 1) jQuery
  * 2) svgcanvas.js
 
-IMPORTANT NOTE: This extension does not conform at all to the guide for creating extensions for SVG-edit
 
--This extension is a context-menu addition - it's not  a tool per se. Because Method-Draw has custom input elements(touch draggables called drag-inputs),
- I created this extension which uses custom jQuery appends and the Method-Draw drag-input initializer to add the necessary HTML elements.
--The return option allows you to just set the panel where you want the tool to go, populate the configOptions object and you are good to go. 
--Remember not to remove the drag input append template, the drag-input initializer and the jQuery extension function for positioning.
-Alter only the configOptions and the panel where you want to attach your extension's input.
+-This extension is split in 5 parts 
 
-Please use this template for adding context tools in Method-Draw from now on. The return object of this extension can be easily used as a template for any type
-of input context tool. If used as template remember to include all necessary functions,variables,templates that are marked in this file with a ''Do not remove''
+1) Defining extesion and jQuery helper function
+2) Define global variables
+3) Define static HTML elements needed for extension
+4) Define functions needed for extension
+5) Return object with ability to use svg-edit events
 
 
 -----------------------
