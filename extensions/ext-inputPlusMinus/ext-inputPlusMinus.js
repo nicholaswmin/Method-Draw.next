@@ -82,14 +82,14 @@ methodDraw.addExtension("inputPlusMinus", function(S) {
 
 
     if (appendAll){
-    inputsToMod.splice(0,inputsToMod.length) 
-    $('.draginput input').each(function() {
-    inputsToMod.push(this.id)
-    });
+        inputsToMod.splice(0,inputsToMod.length) 
+        $('.draginput input').each(function() {
+            inputsToMod.push(this.id)
+        });
     }
 
     if (pushLabelUp){
-    $('.draginput input').attr('style', 'padding: 27px 0 16px !important')
+        $('.draginput input:not("#zoom")').attr('style', 'padding: 27px 0 16px !important')
     }
 
 
