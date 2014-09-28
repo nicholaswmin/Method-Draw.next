@@ -180,7 +180,7 @@ methodDraw.addExtension("mailDesign", function(S) {
     //Create PNG and SVG base64 files, create HTML to include in emails and call 2 different AJAX to email to both customer/manufacturer.
     function prepareOrder(clientName, clientMailAddress, clientCity, clientAddress) {
 
-        var manufacturerMailHtml = "<p><strong>Customer Name:</strong> " + clientName + "<strong></p><p>Customer Email</strong>: " + clientMailAddress + "</p><p><strong>Customer City:</strong> " + clientCity + "</p><p><strong>Customer Address: </strong>" + clientAddress + "</p>";
+        var manufacturerMailHtml = "<p><strong>Customer Name:</strong> " + clientName + "</p><p><strong>Customer Email</strong>: " + clientMailAddress + "</p><p><strong>Customer City:</strong> " + clientCity + "</p><p><strong>Customer Address: </strong>" + clientAddress + "</p>";
 
         var exportedSVG = svgCanvas.svgCanvasToString();
         window.exportedSVG = exportedSVG;
