@@ -10,4 +10,22 @@ $(function() {
 
 
 
+
+
+
+
+
+
+   $.fn.attachToPanelPosition = function(i) {
+        if(i===0){i=1};
+        i=i-1; 
+        var elems = this.find('> *');
+        if (elems.length > i) return elems.eq(i);
+        else return this;
+    }
+
+
+  $('#selected_panel').attachToPanelPosition(4).before("<div class='groupBtn' id='groupBtn'>Group</div>");
+
+
 });
