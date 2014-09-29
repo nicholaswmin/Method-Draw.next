@@ -121,7 +121,7 @@ methodDraw.addExtension("elementTracker", function(S) {
 
 
 
-            $('#selected_panel').attachToPanelPosition(2).before("<label><input id='tracking'><span>Tracking</span></label>");
+            $('#selected_panel').attachToPanelPosition(1).before("<label><input id='tracking'><span>Tracking</span></label>");
             $('#tracking').dragInput({
                 min: -15,
                 max: 15,
