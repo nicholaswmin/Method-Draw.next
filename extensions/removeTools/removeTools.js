@@ -27,9 +27,12 @@ $(function() {
 
   $('#selected_panel').attachToPanelPosition(7).before("<div class='groupBtn' id='groupBtn'>Group</div>");
   $('#selected_panel').attachToPanelPosition(8).before("<div class='groupBtn' id='unGroupBtn'>Ungroup</div>");
+  $('.groupBtn').css({'position': 'relative','width': '147px','clear':'both','height': '32px','margin-top':'7px','margin-bottom','4px','background-color': '#3F3F3C','border-radius': '3px','text-align': 'center','line-height': '32px','display': 'block','color': '#4880FF','font-weight': '400','cursor': 'pointer'})
+
+  $( "#groupBtn" ).click(function() { document.getElementById('tool_group').click();  });
+  $( "#unGroupBtn" ).click(function() { document.getElementById('tool_ungroup').click();  });
 
 
-  $('.groupBtn').css({'position': 'relative','width': '147px','clear':'both','height': '28px','margin-bottom':'10px','background-color': '#3F3F3C','border-radius': '3px','text-align': 'center','vertical-align': 'middle','display': 'block','color': '#4880FF','font-weight': '400','cursor': 'pointer'})
 
 });
 
