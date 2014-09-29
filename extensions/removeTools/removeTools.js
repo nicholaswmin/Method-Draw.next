@@ -25,7 +25,7 @@ $(function() {
     }
 
 
-  $('#selected_panel').attachToPanelPosition(4).before("<div class='groupBtn' id='groupBtn'>Group</div>");
+  $('#selected_panel').attachToPanelPosition(8).before("<div class='groupBtn' id='groupBtn'>Group</div>");
 
 
 });
