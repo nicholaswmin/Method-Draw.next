@@ -15,6 +15,6 @@ $(function() {
 
  //Client asked to remove shapes from shapelib - this is the cleanest way instead of messing with actual code
 
-  $('#shapelib_raph_?').css('display','none');	
+  $('#shapelib_raph_\\?').css('display','none');	
 
 });
