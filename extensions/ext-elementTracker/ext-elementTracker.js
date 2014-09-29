@@ -97,11 +97,12 @@ methodDraw.addExtension("elementTracker", function(S) {
             svgCanvas.undoMgr.addCommandToHistory(cmd);
         };
         $.fn.attachToPanelPosition = function(i) {
-        if(i=0){i=1};
+        if(i===0){i=1};
         i=i-1; 
         var elems = this.find('> *');
         if (elems.length > i) return elems.eq(i);
-        else return this;}
+        else return this;
+    }
 
 
         
@@ -121,7 +122,7 @@ methodDraw.addExtension("elementTracker", function(S) {
 
 
 
-            $('#selected_panel').attachToPanelPosition(1).before("<label><input id='tracking'><span>Tracking</span></label>");
+            $('#selected_panel').attachToPanelPosition(2).before("<label><input id='tracking'><span>Tracking</span></label>");
             $('#tracking').dragInput({
                 min: -15,
                 max: 15,
