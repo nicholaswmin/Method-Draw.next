@@ -21,17 +21,17 @@ methodDraw.addExtension("shapes", function() {
 	// This populates the category list
 	var categories = {
 		basic: 'Basic',
-		object: 'Objects',
-		symbol: 'Symbols',
+		//object: 'Objects',
+		//symbol: 'Symbols',
 		arrow: 'Arrows',
 		flowchart: 'Flowchart',
-		nature: 'Nature',
+		//nature: 'Nature',
 		game: 'Cards & Chess',
-		dialog_balloon: 'Dialog balloons',
-		music: 'Music',
-		weather: 'Weather &amp; Time',
+		//dialog_balloon: 'Dialog balloons',
+		//music: 'Music',
+		//weather: 'Weather &amp; Time',
 		ui: 'User Interface',
-		social: 'Social Web'
+		//social: 'Social Web'
 	};
 	
 	var library = {
