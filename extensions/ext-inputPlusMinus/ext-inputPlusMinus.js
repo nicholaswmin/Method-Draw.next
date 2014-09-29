@@ -14,7 +14,7 @@
 
 IMPORTANT NOTE: This extension does not conform at all to the guide for creating extensions for SVG-edit
 
--This extension is split in 5 parts 
+-This extension is split in 5 sections
 
 1) Defining extesion and jQuery helper function
 2) Define global variables
@@ -27,7 +27,7 @@ IMPORTANT NOTE: This extension does not conform at all to the guide for creating
 */
 "use strict";
 
-//Define extension --------------------------------------------------------------------------------------------------------------------------------------
+// Section 1) Define extension --------------------------------------------------------------------------------------------------------------------------------------
 
 methodDraw.addExtension("inputPlusMinus", function(S) {
     var svgcontent = S.svgcontent,
@@ -38,21 +38,20 @@ methodDraw.addExtension("inputPlusMinus", function(S) {
         addToHistory = function(cmd) {
             svgCanvas.undoMgr.addCommandToHistory(cmd);
         };
-
-    //jQuery extension function for positioning HTML elements in context menu - Do not remove/modify this
-    $.fn.nthorfirst = function(path, i) {
-        var elems = this.find(path);
+        $.fn.attachToPanelPosition = function(i) {
+        if(i===0){i=1};
+        i=i-1; 
+        var elems = this.find('> *');
         if (elems.length > i) return elems.eq(i);
-        else return this;
-    }
+        else return this;}
 
-    //Global variables --------------------------------------------------------------------------------------------------------------------------------------
+// Section 2) Global variables --------------------------------------------------------------------------------------------------------------------------------------
 
 
     var appendAll = true; //Set this to false if you want only SOME elements to have +/-.  Otherwise all draginput elements get +/- buttons
     var inputsToMod = []; //Type the id's of the elements you want to attach +/- to. -e.g [path_x,path_y]. Set appendToCustom=false as well.
     var pushLabelUp = true;//If true pushes the label of drag-inputs a bit up, to accomodate the buttons better.
-    var longPressInt = 90;//long-press firing ms delay. rec is 20-30
+    var longPressInt = 50;//long-press firing ms delay. rec is 20-30
 
 
 
@@ -62,7 +61,7 @@ methodDraw.addExtension("inputPlusMinus", function(S) {
 
 
 
-    //Append necessary HTML elements (if it's a left-toolbar button define it according to svg-edit extension docs in return object.)------------------------
+// Section 3) Append necessary HTML elements (if it's a left-toolbar button define it according to svg-edit extension docs in return object.)------------------------
 
 
         //This extension uses dynamic appends from array, the HTML elements are not static,
@@ -74,7 +73,8 @@ methodDraw.addExtension("inputPlusMinus", function(S) {
 
 
 
-    //Functions for extension-------------------------------------------------------------------------------------------------------------------------------
+
+//Section 4) Functions for extension-------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -180,7 +180,7 @@ $("body").mouseup(function() {
         $('#' + who).trigger('minus');
     }
 
-    //Extension Return object----------------------------------------------------------------------------------------------------------------------------------
+// Section 5) Extension Return object----------------------------------------------------------------------------------------------------------------------------------
     return {
         name: "elementTracker",
         svgicons: "extensions/vectorText-icon.xml", //this is not needed since we don't need an icon but the extension throws error without it.

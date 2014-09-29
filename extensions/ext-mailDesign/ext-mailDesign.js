@@ -15,19 +15,19 @@
 
 IMPORTANT NOTE: This extension does not conform at all to the guide for creating extensions for SVG-edit
 
--This extension is split in 5 parts 
+-This extension is split in 5 sections
 
 1) Defining extesion and jQuery helper function
 2) Define global variables
 3) Define static HTML elements needed for extension
 4) Define functions needed for extension
-5) Return object with ability to use svg-edit events.
+5) Return object with ability to use svg-edit events
 
  */
 "use strict";
 
 
- //Define extension --------------------------------------------------------------------------------------------------------------------------------------
+// Section 1) Define extension --------------------------------------------------------------------------------------------------------------------------------------
 
 methodDraw.addExtension("mailDesign", function(S) {
     var svgcontent = S.svgcontent,
@@ -38,15 +38,17 @@ methodDraw.addExtension("mailDesign", function(S) {
         addToHistory = function(cmd) {
             svgCanvas.undoMgr.addCommandToHistory(cmd);
         };
-
-    //jQuery extension function for positioning HTML elements in context menu - Do not remove/modify this 
-    $.fn.nthorfirst = function(path, i) {
-        var elems = this.find(path);
+        $.fn.attachToPanelPosition = function(i) {
+        if(i===0){i=1};
+        i=i-1; 
+        var elems = this.find('> *');
         if (elems.length > i) return elems.eq(i);
         else return this;
-    }
+        }
 
-//Global variables ---------------------------------------------------------------------------------------------------------------------------------------
+
+
+// Section 2) Global variables --------------------------------------------------------------------------------------------------------------------------------------
 
     var manufacturerMailAddress = "frauschneize@googlemail.com"; //Manufacturer's mail.
     var mandrillApiKey = 'gpo5bJ5TVOIKa4p3F1CsEA';
@@ -70,32 +72,14 @@ methodDraw.addExtension("mailDesign", function(S) {
 
 
 
-//Append necessary HTML elements (if it's a left-toolbar button define it according to svg-edit extension docs in return object.)--------------------------
+// Section 3) Append necessary HTML elements (if it's a left-toolbar button define it according to svg-edit extension docs in return object.)------------------------
 
-    var attachToPanel = 'tools_top'; //Type here the panel you want to attach the element to.
-    var extElementConfig1 = {
-        extElementPosition: 10,
-        extElementId: 'mailOrderBtn'
-    }; //Config options for element. Add a position and a unique id.
+
     //Template for adding a button - do not remove or modify this.
-    $('#' + attachToPanel).nthorfirst('> *', extElementConfig1.extElementPosition).before("<div id='placeOrderBtnWrapper' ><div class='orderBtn' id='" + extElementConfig1.extElementId + "'>Place Order</div></div>");
-    $('#' + extElementConfig1.extElementId).click(function() {
-        $("#formOverlay,#form-div").fadeIn();
-        resetForm();
-    }); //What to do when button is pressed?
-    //To add more buttons, declare another extElementConfig object,e.g 'extElementConfig2', it's append commands and it's click handler.
+    $('#tools_top').attachToPanelPosition(10).before("<div id='placeOrderBtnWrapper' ><div class='orderBtn' id='mailOrderBtn'>Place Order</div></div>");
 
     //Appending a form as well. Specific to this extension only.
     $('body').append("<div id='formOverlay' class='formOverlay'></div><div id='form-main'><div id='form-div'><p class='name'><div id='closeFormBtn'>Close</div></p><form class='form' id='form1'><p class='name'><input name='name' type='text' class='validate[required,custom[onlyLetter],length[0,100]] feedback-input' placeholder='Name' id='name'/></p><p class='email'><input name='email' type='text' class='validate[required,custom[email]] feedback-input' id='email' placeholder='Email'/></p><p class='city'><input name='city' type='text' class='validate[required,custom[email]] feedback-input' id='city' placeholder='City'/></p><p class='text'><textarea name='address' class='validate[required,length[6,300]] feedback-input' id='address' placeholder='Address'></textarea></p><div id='mailOrderFormErrMsg' class='formErrMsg'></div><div class='submit'><div id='formSubmitBtn'>Send Order</div><div class='ease'></div></div></form><div id='thanksDiv'><div class='thanksMsg'>" + thanksMsg + "</div><p class='thanksMsg2'>" + thanksMsg2 + "</p><div class='submit'><div id='thanksCloseBtn'>Continue</div><div class='ease'></div></div></div></div>");
-    $("#formSubmitBtn").click(function() {
-        validate();
-    });
-    $("#closeFormBtn,#thanksCloseBtn").click(function() {
-        $("#formOverlay,#form-div").fadeOut()
-    });
-
-
-
 
     //Appending a hidden canvas element as well - used by canvg for exporting a PNG - defined in extensions css file as display:none
     $('body').append("<canvas id='myCanvas' width='400px' height='200px' style='display:none'></canvas>");
@@ -108,7 +92,29 @@ methodDraw.addExtension("mailDesign", function(S) {
 
 
 
-    //Functions for extension-----------------------------------------------------------------------------------------------------------------------------
+//Section 4) Functions for extension-------------------------------------------------------------------------------------------------------------------------------
+    
+
+    $('#mailOrderBtn').click(function() {
+        $("#formOverlay,#form-div").fadeIn();
+        resetForm();
+    });
+
+
+    $("#formSubmitBtn").click(function() {
+        validate();
+    });
+    $("#closeFormBtn,#thanksCloseBtn").click(function() {
+        $("#formOverlay,#form-div").fadeOut()
+    });
+
+
+
+
+
+
+
+
 
     //Check for empty fields. Validation util function
     function validateEmpty(str) {
@@ -306,7 +312,7 @@ methodDraw.addExtension("mailDesign", function(S) {
 
 
 
-//Extension Return object----------------------------------------------------------------------------------------------------------------------------------
+//Section 5) Extension Return object----------------------------------------------------------------------------------------------------------------------------------
 
     return {
         name: "mailDesign",
