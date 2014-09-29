@@ -89,12 +89,6 @@ this.moveSingleElement = function(elemToMove,dx, dy, undoable) {
 methodDraw.addExtension("elementTracker", function(S) {
 
     var svgcontent = S.svgcontent,
-        $.fn.attachToPanelPosition = function(i) {
-        if(i=0){i=1};
-        i=i-1; 
-        var elems = this.find('> *');
-        if (elems.length > i) return elems.eq(i);
-        else return this;},
         svgns = "http://www.w3.org/2000/svg",
         svgdoc = S.svgroot.parentNode.ownerDocument,
         svgCanvas = methodDraw.canvas,
@@ -102,6 +96,12 @@ methodDraw.addExtension("elementTracker", function(S) {
         addToHistory = function(cmd) {
             svgCanvas.undoMgr.addCommandToHistory(cmd);
         };
+        $.fn.attachToPanelPosition = function(i) {
+        if(i=0){i=1};
+        i=i-1; 
+        var elems = this.find('> *');
+        if (elems.length > i) return elems.eq(i);
+        else return this;}
 
 
         
