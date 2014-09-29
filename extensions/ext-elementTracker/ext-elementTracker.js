@@ -99,9 +99,9 @@ methodDraw.addExtension("elementTracker", function(S) {
 
     //jQuery extension function for positioning HTML elements in context menu - Do not remove/modify this 
     $.fn.attachToPanelPosition = function(i) {
+        i=i-1;
         var elems = this.find('> *');
         if (elems.length > i) return elems.eq(i);
-        console.log(this)
         else return this;
     }
 
