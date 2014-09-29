@@ -6,7 +6,10 @@
  * Copyright(c) 2010 Christian Tzurcanu
  * Copyright(c) 2010 Alexis Deveria
  *
+ * Modified by Nicholas Kyriakides 2014, commented out some categories and also removed some shapes from the shapes JSON files 
  */
+
+
 
 methodDraw.addExtension("shapes", function() {
 	
