@@ -29,7 +29,7 @@ $(function() {
   $('#selected_panel').attachToPanelPosition(8).before("<div class='groupBtn' id='unGroupBtn'>Ungroup</div>");
 
 
-  $('.groupBtn').css({'position': 'relative','width': '141px','clear':'both','height': '28px','background-color': '#3F3F3C','border-radius': '3px','text-align': 'center','vertical-align': 'middle','display': 'table-cell','color': '#4880FF','font-weight': '400','cursor': 'pointer'})
+  $('.groupBtn').css({'position': 'relative','width': '147px','clear':'both','height': '28px','margin-bottom':'10px','background-color': '#3F3F3C','border-radius': '3px','text-align': 'center','vertical-align': 'middle','display': 'block','color': '#4880FF','font-weight': '400','cursor': 'pointer'})
 
 });
 
