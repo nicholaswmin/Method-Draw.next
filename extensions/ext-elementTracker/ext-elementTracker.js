@@ -84,7 +84,7 @@ this.moveSingleElement = function(elemToMove,dx, dy, undoable) {
 
 
 
-//Define extension --------------------------------------------------------------------------------------------------------------------------------------
+// Section 1) Define extension --------------------------------------------------------------------------------------------------------------------------------------
 
 methodDraw.addExtension("elementTracker", function(S) {
     var svgcontent = S.svgcontent,
@@ -98,38 +98,32 @@ methodDraw.addExtension("elementTracker", function(S) {
 
 
     //jQuery extension function for positioning HTML elements in context menu - Do not remove/modify this 
-    $.fn.nthorfirst = function(path, i) {
-        var elems = this.find(path);
+    $.fn.attachToPanelPosition = function(i) {
+        var elems = this.find('> *');
         if (elems.length > i) return elems.eq(i);
         else return this;
     }
 
         
 
-//Global variables --------------------------------------------------------------------------------------------------------------------------------------
+// Section 2) Global variables --------------------------------------------------------------------------------------------------------------------------------------
     var selectedElems = [];//This gets filled with selected elements on selectedChanged at the end of this file.
 
 
 
-//Append necessary HTML elements (if it's a left-toolbar button define it according to svg-edit extension docs in return object.)------------------------
+// Section 3) Append necessary HTML elements (if it's a left-toolbar button define it according to svg-edit extension docs in return object.)------------------------
 
 
-            //HTML element config options.
-            var attachToPanel = 'selected_panel'; //Type here the panel you want to attach the element to.
-            var extElementConfig1={extElementPosition :1,extElementId:'tracking',extElementTitle:'Tracking',extElementInitVal:0}; //Config options for element. Adjust accordingly
 
-            //HTML append template for adding a drag-input type html elem. Modify only min,max,step,callback and cursor.
-            $('#'+attachToPanel).nthorfirst('> *',extElementConfig1.extElementPosition).before("<label><input id='tracking'><span>"+extElementConfig1.extElementTitle+"</span></label>");
-            $('#'+extElementConfig1.extElementId).dragInput({ //Initialize using MethodDraw drag input. Do not remove/modify this.
+            $('#selected_panel').attachToPanelPosition(1).before("<label><input id='tracking'><span>Tracking</span></label>");
+            $('#tracking').dragInput({
                 min: -15,
                 max: 15,
                 step: 1,
                 callback: debouncer(debouncer_func, 250),
                 cursor: false
             }); //init a Method-draw drag input template. Do not remove/modify this 
-            $('#'+extElementConfig1.extElementId).val(extElementConfig1.extElementInitVal);
-            //The function to call when dragging the input is declared in the callback property of extElementConfig.
-            //To add more inputs declare another extElementConfig object,e.g 'extElementConfig2' and copy/paste the append function(nthorfirst)
+            $('#tracking').val(0);
 
 
 
@@ -137,7 +131,8 @@ methodDraw.addExtension("elementTracker", function(S) {
 
 
 
-//Functions for extension-------------------------------------------------------------------------------------------------------------------------------
+
+//Section 4) Functions for extension-------------------------------------------------------------------------------------------------------------------------------
 
 
     //Debouncer utility function.
@@ -311,7 +306,7 @@ methodDraw.addExtension("elementTracker", function(S) {
 
 
 
-//Extension Return object----------------------------------------------------------------------------------------------------------------------------------
+// Section 5) Extension Return object----------------------------------------------------------------------------------------------------------------------------------
     return {
         name: "elementTracker",
         svgicons: "extensions/vectorText-icon.xml", //this is not needed since we don't need an icon but the extension throws error without it.
