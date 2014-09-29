@@ -11,7 +11,7 @@
  * 2) svgcanvas.js
 
 
--This extension is split in 5 parts 
+-This extension is split in 5 sections
 
 1) Defining extesion and jQuery helper function
 2) Define global variables
@@ -100,7 +100,7 @@ methodDraw.addExtension("elementTracker", function(S) {
     //jQuery extension function for positioning HTML elements in context menu - Do not remove/modify this 
     $.fn.attachToPanelPosition = function(i) {
         var elems = this.find('> *');
-        if (elems.length > i+1) return elems.eq(i+1);
+        if (elems.length > i) return elems.eq(i+1);
         else return this;
     }
 
