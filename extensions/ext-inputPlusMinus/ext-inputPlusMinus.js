@@ -51,7 +51,7 @@ methodDraw.addExtension("inputPlusMinus", function(S) {
     var appendAll = true; //Set this to false if you want only SOME elements to have +/-.  Otherwise all draginput elements get +/- buttons
     var inputsToMod = []; //Type the id's of the elements you want to attach +/- to. -e.g [path_x,path_y]. Set appendToCustom=false as well.
     var pushLabelUp = true;//If true pushes the label of drag-inputs a bit up, to accomodate the buttons better.
-    var longPressInt = 50;//long-press firing ms delay. rec is 20-30
+    var longPressInt = 65;//long-press firing ms delay. rec is 20-30
 
 
 
