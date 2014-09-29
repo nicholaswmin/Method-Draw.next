@@ -94,7 +94,7 @@ methodDraw.addExtension("elementTracker", function(S) {
         i=i-1; 
         var elems = this.find('> *');
         if (elems.length > i) return elems.eq(i);
-        else return this;}
+        else return this;},
         svgns = "http://www.w3.org/2000/svg",
         svgdoc = S.svgroot.parentNode.ownerDocument,
         svgCanvas = methodDraw.canvas,
@@ -107,7 +107,13 @@ methodDraw.addExtension("elementTracker", function(S) {
         
 
 // Section 2) Global variables --------------------------------------------------------------------------------------------------------------------------------------
-    var selectedElems = [];//This gets filled with selected elements on selectedChanged at the end of this file.
+
+
+
+        //Finite-precision calculations. Precision is determined by the trackTolerance var. 
+        var trackTolerance = 0.01;
+        var compPrecision = 2; // Max 12, min 0. Highest values = high precision but slow performance.
+
 
 
 
@@ -133,7 +139,11 @@ methodDraw.addExtension("elementTracker", function(S) {
 
 
 //Section 4) Functions for extension-------------------------------------------------------------------------------------------------------------------------------
+    
 
+
+
+     var selectedElems = [];//This gets filled with selected elements on selectedChanged at the end of this file.
 
     //Debouncer utility function.
     function debouncer(func, timeout) {
@@ -229,9 +239,7 @@ methodDraw.addExtension("elementTracker", function(S) {
 
     function trackElements() {
 
-        //Finite-precision calculations. Precision is determined by the trackTolerance var. 
-        var trackTolerance = 0.01;
-        var compPrecision = 2; // Max 12, min 0. Highest values = high precision but slow performance.
+
 
         //Check if grouped and selected in which case use Ungroup from svg-canvas.js. DOES NOT WORK IN IE11
 
