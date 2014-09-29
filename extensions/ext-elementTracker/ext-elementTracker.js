@@ -87,6 +87,12 @@ this.moveSingleElement = function(elemToMove,dx, dy, undoable) {
 // Section 1) Define extension --------------------------------------------------------------------------------------------------------------------------------------
 
 methodDraw.addExtension("elementTracker", function(S) {
+        $.fn.attachToPanelPosition = function(i) {
+        if(i=0){i=1};
+        i=i-1; 
+        var elems = this.find('> *');
+        if (elems.length > i) return elems.eq(i);
+        else return this;}
     var svgcontent = S.svgcontent,
         svgns = "http://www.w3.org/2000/svg",
         svgdoc = S.svgroot.parentNode.ownerDocument,
@@ -96,14 +102,6 @@ methodDraw.addExtension("elementTracker", function(S) {
             svgCanvas.undoMgr.addCommandToHistory(cmd);
         };
 
-
-    //jQuery extension function for positioning HTML elements in context menu - Do not remove/modify this 
-    $.fn.attachToPanelPosition = function(i) {
-        i=i-1;
-        var elems = this.find('> *');
-        if (elems.length > i) return elems.eq(i);
-        else return this;
-    }
 
         
 
@@ -116,7 +114,7 @@ methodDraw.addExtension("elementTracker", function(S) {
 
 
 
-            $('#selected_panel').attachToPanelPosition(1).before("<label><input id='tracking'><span>Tracking</span></label>");
+            $('#selected_panel').attachToPanelPosition(2).before("<label><input id='tracking'><span>Tracking</span></label>");
             $('#tracking').dragInput({
                 min: -15,
                 max: 15,
