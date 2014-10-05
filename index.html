@@ -61,6 +61,8 @@
   <script type="text/javascript" src="extensions/ext-inputPlusMinus/ext-inputPlusMinus.js"></script><!--New addition since Method-draw. Adds +/- buttons to draginputs-->
   <script type="text/javascript" src="extensions/ext-mailDesign/ext-mailDesign.js"></script><!--New addition since Method-draw. Adds customer details form and functions that email PNG to customer/SVG & PNG to manufacturer-->
 
+  <script type="text/javascript" src="extensions/ext-translations/ext-translations.js"></script><!--New addition since Method-draw. Add translations - keep this on bottom of JS includes-->
+
 
 
 
@@ -114,7 +116,7 @@
   </div>
 
   <div class="menu">
-    <div class="menu_title">Edit</div>
+    <div class="menu_title" id="edit_menu_btn">Edit</div>
   	<div class="menu_list" id="edit_menu">
   		<div class="menu_item" id="tool_undo">Undo <span class="shortcut">⌘Z</span></div>
   		<div class="menu_item" id="tool_redo">Redo <span class="shortcut">⌘Y</span></div>
@@ -128,7 +130,7 @@
   </div>
   
   <div class="menu">
-    <div class="menu_title">Object</div>
+    <div class="menu_title" id="object_menu_btn">Object</div>
   	<div class="menu_list"  id="object_menu">
 			<div class="menu_item action_selected disabled" id="tool_move_top">Bring to Front <span class="shortcut">⌘⇧↑</span></div>
 			<div class="menu_item action_selected disabled" id="tool_move_up">Bring Forward <span class="shortcut">⌘↑</span></div>
@@ -144,7 +146,7 @@
   </div>
 
   <div class="menu">
-    <div class="menu_title">View</div>
+    <div class="menu_title" id="view_menu_btn">View</div>
   	<div class="menu_list" id="view_menu">
   	    <div class="menu_item push_button_pressed" id="tool_rulers">View Rulers</div>
   	    <div class="menu_item" id="tool_wireframe">View Wireframe</div>
