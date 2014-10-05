@@ -52,17 +52,8 @@ methodDraw.addExtension("vectorText", function(S) {
         else return this;
         }
 
-//Section  2) Translations - 
-
-var vectorTextLang = {};
-vectorTextLang.fontSelectorInstruction = "Wähle eine Schriftart und den gewünschten Text.";
-vectorTextLang.placeFontBtn = "Text einfügen";
-vectorTextLang.cancelFontBtn = "Abbrechen"
-
 
 // Section 2) Global variables --------------------------------------------------------------------------------------------------------------------------------------
-
-
 
     //Define the fonts from the folder - format: actual path / display name
     var loadedFonts = [
@@ -82,7 +73,7 @@ vectorTextLang.cancelFontBtn = "Abbrechen"
     
 
 
-    $('body').append("<div id='fontSelectorDiv'> <div class='container'> <div class='explain'>"+vectorTextLang.fontSelectorInstruction+" </div> <input id='file' type='file' > <span class='info' id='font-name'>Fingbanger</span> <select id='fontSelector'> </select> <input id='fontTxtInput' type='text' class='text-input' value='Hello, World!' autofocus id='textField'> <input type='range' min='6' max='500' step='2' value='150' id='font-size-range' autocomplete='off'><span id='fontSize'>150</span> <canvas id='preview' width='940' height='300' class='text'></canvas> <div id='message'></div> <label> <input id='drawPointsCheckBox' type='checkbox'>Draw Points</label> <label> <input id='drawMetricsCheckBox' type='checkbox'>Draw Metrics</label> <label> <input id='kerningCheckBox' type='checkbox'>Kerning</label> <div id='glyphs'></div><hr id='fontSelectorLine'><button type='button' id='placeFontBtn'>"+vectorTextLang.placeFontBtn+"</button><button type='button' id='cancelFontBtn'>"+vectorTextLang.cancelFontBtn+"</button></div>");
+    $('body').append("<div id='fontSelectorDiv'> <div class='container'> <div id='fontSelectorInstructions' class='explain'> Select a font from the menu below and type in the letters you want to import to your canvas. </div> <input id='file' type='file' > <span class='info' id='font-name'>Fingbanger</span> <select id='fontSelector'> </select> <input id='fontTxtInput' type='text' class='text-input' value='Hello, World!' autofocus id='textField'> <input type='range' min='6' max='500' step='2' value='150' id='font-size-range' autocomplete='off'><span id='fontSize'>150</span> <canvas id='preview' width='940' height='300' class='text'></canvas> <div id='message'></div> <label> <input id='drawPointsCheckBox' type='checkbox'>Draw Points</label> <label> <input id='drawMetricsCheckBox' type='checkbox'>Draw Metrics</label> <label> <input id='kerningCheckBox' type='checkbox'>Kerning</label> <div id='glyphs'></div><hr id='fontSelectorLine'><button type='button' id='placeFontBtn'>Place letters</button><button type='button' id='cancelFontBtn'>Cancel</button></div>");
 
 
 

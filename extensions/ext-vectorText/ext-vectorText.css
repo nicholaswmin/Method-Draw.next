@@ -106,7 +106,7 @@
   text-decoration: none solid rgba(255, 255, 255, 0.74902);
   vertical-align: middle;
   white-space: nowrap;
-  width: 89px;
+  width: auto;
   z-index: 2;
   perspective-origin: 44.5px 18.5px;
   transform-origin: 44.5px 18.5px;
