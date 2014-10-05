@@ -9,11 +9,14 @@
 
   <link rel="stylesheet" href="lib/jgraduate/css/jPicker.css" type="text/css"/>
   <link rel="stylesheet" href="lib/jgraduate/css/jgraduate.css" type="text/css"/>
+  <link rel="stylesheet" href="lib/jquery-ui/jquery-ui.min.css" type="text/css"/>
   <link rel="stylesheet" href="css/method-draw.css" type="text/css"/>
   <link rel="stylesheet" href="css/fonts.css" type="text/css"/>
   <link rel="stylesheet" href="extensions/ext-vectorText/ext-vectorText.css" type="text/css"/><!--Extension CSS file for ext-vectorText-->
   <link rel="stylesheet" href="extensions/ext-inputPlusMinus/ext-inputPlusMinus.css" type="text/css"/><!--Extension CSS file for ext-inputPlusMinus-->
   <link rel="stylesheet" href="extensions/ext-mailDesign/ext-mailDesign.css" type="text/css"/><!--Extension CSS file for ext-mailDesign-->
+  <link rel="stylesheet" href="extensions/ext-translations/ext-translations.css" type="text/css"/><!--Extension CSS file for ext-mailDesign-->
+
 
   <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -28,7 +31,7 @@
   <script type="text/javascript" src="icons/jquery.svgicons.js"></script>
   <script type="text/javascript" src="lib/jgraduate/jquery.jgraduate.js"></script>
   <script type="text/javascript" src="lib/contextmenu/jquery.contextMenu.js"></script>
-  <script type="text/javascript" src="lib/jquery-ui/jquery-ui-1.8.17.custom.min.js"></script>
+  <script type="text/javascript" src="lib/jquery-ui/jquery-ui.min.js"></script>
   <script type="text/javascript" src="lib/opentype.min.js"></script><!--New addition since Method-draw. Complements ext-vectorText below-->
   <script type="text/javascript" src="src/browser.js"></script>
   <script type="text/javascript" src="src/svgtransformlist.js"></script>
@@ -97,7 +100,7 @@
 <div id="menu_bar">
   <a class="menu">
     <div class="menu_title" id="logo"></div>
-    <div class="menu_list">
+    <div class="menu_list" id="editor_general_menu">
       <div id="tool_about" class="menu_item">About this Editor...</div>
       <div class="separator"></div>
       <div id="tool_about" class="menu_item">Keyboard Shortcus...</div>
@@ -105,7 +108,7 @@
   </a>
   
   <div class="menu">
-  	<div class="menu_title"  id="file_menu_btn">File</div>
+  	<div class="menu_title" id="file_menu_btn">File</div>
   	<div class="menu_list" id="file_menu"> 
   		<div id="tool_clear" class="menu_item">New Document</div>
   		<div id="tool_open" class="menu_item" style="display: none;"><div id="fileinputs"></div>Open SVG...</div>

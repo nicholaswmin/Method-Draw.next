@@ -8,9 +8,10 @@
  *
  * Dependencies:
  * 1) jQuery
- * 2) canvg.js
- * 3) Mandrill Email provider - https://mandrillapp.com/docs/
- * 4) This extensions CSS file/s
+ * 2) JQuery UI
+ * 3) canvg.js
+ * 4) Mandrill Email provider - https://mandrillapp.com/docs/
+ * 5) This extensions CSS file/s
 
 
 IMPORTANT NOTE: This extension does not conform at all to the guide for creating extensions for SVG-edit
@@ -38,7 +39,7 @@ methodDraw.addExtension("mailDesign", function(S) {
         addToHistory = function(cmd) {
             svgCanvas.undoMgr.addCommandToHistory(cmd);
         };
-        $.fn.attachToPanelPosition = function(i) {
+        $.fn.attachToPanelAfter = function(i) {
         if(i===0){i=1};
         i=i-1; 
         var elems = this.find('> *');
@@ -62,7 +63,7 @@ methodDraw.addExtension("mailDesign", function(S) {
     var noNameErrMsg = "Seems you forgot to type your name..";
     var noEmailErrMsg = "Seems you forgot to type your email address..";
     var wrongEmailErrMsg = "Make sure you are typing your email correctly.."
-    var noCityErrMsg = "Seems you forgot to type your city..";
+    var noHowManyErrMsg = "Seems you forgot to type your many pieces you need";
     var noAddressErrMsg = "Seems you forgot to type your address..";
 
     var sendingErrMsg = "We cannot send your message at this moment";
@@ -76,16 +77,34 @@ methodDraw.addExtension("mailDesign", function(S) {
 
 
     //Template for adding a button - do not remove or modify this.
-    $('#tools_top').attachToPanelPosition(10).before("<div id='placeOrderBtnWrapper' ><div class='orderBtn' id='mailOrderBtn'>Place Order</div></div>");
+    $('#tools_top').append("<div id='placeOrderBtnWrapper' ><div class='orderBtn' id='mailOrderBtn'>Place Order</div></div>");
 
     //Appending a form as well. Specific to this extension only.
-    $('body').append("<div id='formOverlay' class='formOverlay'></div><div id='form-main'><div id='form-div'><p class='name'><div id='closeFormBtn'>Close</div></p><form class='form' id='form1'><p class='name'><input name='name' type='text' class='validate[required,custom[onlyLetter],length[0,100]] feedback-input' placeholder='Name' id='name'/></p><p class='email'><input name='email' type='text' class='validate[required,custom[email]] feedback-input' id='email' placeholder='Email'/></p><p class='city'><input name='city' type='text' class='validate[required,custom[email]] feedback-input' id='city' placeholder='City'/></p><p class='text'><textarea name='address' class='validate[required,length[6,300]] feedback-input' id='address' placeholder='Address'></textarea></p><div id='mailOrderFormErrMsg' class='formErrMsg'></div><div class='submit'><div id='formSubmitBtn'>Send Order</div><div class='ease'></div></div></form><div id='thanksDiv'><div class='thanksMsg'>" + thanksMsg + "</div><p class='thanksMsg2'>" + thanksMsg2 + "</p><div class='submit'><div id='thanksCloseBtn'>Continue</div><div class='ease'></div></div></div></div>");
-
+    $('body').append("<div id='form-main'><div id='form-div'><form class='form' id='form1'><p class='name'><input name='name' type='text' class='validate[required,custom[onlyLetter],length[0,100]] feedback-input' placeholder='Name' id='mailOrderName'/></p><p class='email'><input name='email' type='text' class='validate[required,custom[email]] feedback-input' id='mailOrderEmail' placeholder='Email'/></p><p class='howMany'><input name='howMany' type='text' class='validate[required,custom[email]] feedback-input' id='mailOrderHowMany' placeholder='How Many' value='1' disabled></p><p class='text'><textarea name='address' class='validate[required,length[6,300]] feedback-input' id='mailOrderAddress' placeholder='Address'></textarea></p><div id='mailOrderFormErrMsg' class='formErrMsg'></div><div class='submit'><div id='formSubmitBtn'>Send Order</div><div class='ease'></div></div></form><div id='thanksDiv'><div id='thanksMsg' class='thanksMsg'>" + thanksMsg + "</div><p id='thanksMsg2' class='thanksMsg2'>" + thanksMsg2 + "</p><div class='submit'><div id='thanksCloseBtn'>Continue</div><div class='ease'></div></div></div></div>");
+    var spinner = $( "#mailOrderHowMany" ).spinner({min:1,max:200});//How many should be a spinner - using jQuery-UI
     //Appending a hidden canvas element as well - used by canvg for exporting a PNG - defined in extensions css file as display:none
     $('body').append("<canvas id='myCanvas' width='400px' height='200px' style='display:none'></canvas>");
 
+    $( "#form-main" ).dialog({
+      autoOpen: false,
+      resizable: false,
+      modal:true,
+      width: "40%",
+      minHeight:"550",
+      show: {
+        effect: "fade",
+        duration: 500
+      },
+      hide: {
+        effect: "fade",
+        duration: 500
+      }
+    });
 
 
+
+
+         
 
 
 
@@ -96,7 +115,7 @@ methodDraw.addExtension("mailDesign", function(S) {
     
 
     $('#mailOrderBtn').click(function() {
-        $("#formOverlay,#form-div").fadeIn();
+        $( "#form-main" ).dialog( "open" );
         resetForm();
     });
 
@@ -104,8 +123,8 @@ methodDraw.addExtension("mailDesign", function(S) {
     $("#formSubmitBtn").click(function() {
         validate();
     });
-    $("#closeFormBtn,#thanksCloseBtn").click(function() {
-        $("#formOverlay,#form-div").fadeOut()
+    $("#thanksCloseBtn").click(function() {
+        $( "#form-main" ).dialog( "close" );
     });
 
 
@@ -158,10 +177,10 @@ methodDraw.addExtension("mailDesign", function(S) {
 
         //Define Validation vars here and an IF below. That's it.
 
-        var clientName = $('#name').val();
-        var clientMailAddress = $('#email').val();
-        var clientCity = $('#city').val();
-        var clientAddress = $('#address').val();
+        var clientName = $('#mailOrderName').val();
+        var clientMailAddress = $('#mailOrderEmail').val();
+        var clientHowMany = $('#mailOrderHowMany').val();
+        var clientAddress = $('#mailOrderAddress').val();
 
         if (validateEmpty(clientName)) {
             $("#mailOrderFormErrMsg").html(noNameErrMsg)
@@ -172,21 +191,21 @@ methodDraw.addExtension("mailDesign", function(S) {
         } else if (!validateEmail(clientMailAddress)) {
             $("#mailOrderFormErrMsg").html(wrongEmailErrMsg)
             return false;
-        } else if (validateEmpty(clientCity)) {
-            $("#mailOrderFormErrMsg").html(noCityErrMsg)
+        } else if (validateEmpty(clientHowMany)) {
+            $("#mailOrderFormErrMsg").html(noHowManyErrMsg)
             return false;
         } else if (validateEmpty(clientAddress)) {
             $("#mailOrderFormErrMsg").html(noAddressErrMsg)
             return false;
         }
 
-        prepareOrder(clientName, clientMailAddress, clientCity, clientAddress);
+        prepareOrder(clientName, clientMailAddress, clientHowMany, clientAddress);
     }
 
     //Create PNG and SVG base64 files, create HTML to include in emails and call 2 different AJAX to email to both customer/manufacturer.
-    function prepareOrder(clientName, clientMailAddress, clientCity, clientAddress) {
+    function prepareOrder(clientName, clientMailAddress, clientHowMany, clientAddress) {
 
-        var manufacturerMailHtml = "<p><strong>Customer Name:</strong> " + clientName + "</p><p><strong>Customer Email</strong>: " + clientMailAddress + "</p><p><strong>Customer City:</strong> " + clientCity + "</p><p><strong>Customer Address: </strong>" + clientAddress + "</p>";
+        var manufacturerMailHtml = "<p><strong>Customer Name:</strong> " + clientName + "</p><p><strong>Customer Email</strong>: " + clientMailAddress + "</p><p><strong>Number of copies:</strong> " + clientHowMany + "</p><p><strong>Customer Address: </strong>" + clientAddress + "</p>";
 
         var exportedSVG = svgCanvas.svgCanvasToString();
         window.exportedSVG = exportedSVG;

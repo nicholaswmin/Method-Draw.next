@@ -8,10 +8,11 @@
  *
  * Dependencies:
  * 1) jQuery
- * 2) opentype.min.js
- * 3) svgcanvas.js
- * 4) A folder with fonts in this .js file's root directory "e.g extensions/vectorTextFonts".
- * 5) This extension's CSS file
+ * 2) JQuery UI
+ * 3) opentype.min.js
+ * 4) svgcanvas.js
+ * 5) A folder with fonts in this .js file's root directory "e.g extensions/vectorTextFonts".
+ * 6) This extension's CSS file
 
 
 
@@ -44,7 +45,7 @@ methodDraw.addExtension("vectorText", function(S) {
         addToHistory = function(cmd) {
             svgCanvas.undoMgr.addCommandToHistory(cmd);
         }
-        $.fn.attachToPanelPosition = function(i) {
+        $.fn.attachToPanelAfter = function(i) {
         if(i===0){i=1};
         i=i-1; 
         var elems = this.find('> *');
@@ -75,7 +76,21 @@ methodDraw.addExtension("vectorText", function(S) {
 
     $('body').append("<div id='fontSelectorDiv'> <div class='container'> <div id='fontSelectorInstructions' class='explain'> Select a font from the menu below and type in the letters you want to import to your canvas. </div> <input id='file' type='file' > <span class='info' id='font-name'>Fingbanger</span> <select id='fontSelector'> </select> <input id='fontTxtInput' type='text' class='text-input' value='Hello, World!' autofocus id='textField'> <input type='range' min='6' max='500' step='2' value='150' id='font-size-range' autocomplete='off'><span id='fontSize'>150</span> <canvas id='preview' width='940' height='300' class='text'></canvas> <div id='message'></div> <label> <input id='drawPointsCheckBox' type='checkbox'>Draw Points</label> <label> <input id='drawMetricsCheckBox' type='checkbox'>Draw Metrics</label> <label> <input id='kerningCheckBox' type='checkbox'>Kerning</label> <div id='glyphs'></div><hr id='fontSelectorLine'><button type='button' id='placeFontBtn'>Place letters</button><button type='button' id='cancelFontBtn'>Cancel</button></div>");
 
-
+     $( "#fontSelectorDiv" ).dialog({
+      autoOpen: false,
+      resizable: false,
+      width: "45%",
+      minHeight:"40%",
+      position: { my: "right top"},
+      show: {
+        effect: "fade",
+        duration: 500
+      },
+      hide: {
+        effect: "fade",
+        duration: 500
+      }
+    });
 
 
 
@@ -351,7 +366,7 @@ methodDraw.addExtension("vectorText", function(S) {
 
     //On succesful append of fonts to svgCanvas set select mode and fade out the fontSelectorDiv
     function fontAppendSuccess(){
-        $("#fontSelectorDiv").fadeOut('fast'); 
+        $( "#fontSelectorDiv" ).dialog( "close" );
         //Copied function from method-draw.js that sets select mode
         var curr = $('.tool_button_current');
                 if(curr.length && curr[0].id !== 'tool_select') {
@@ -364,7 +379,7 @@ methodDraw.addExtension("vectorText", function(S) {
     //Click handlers
 
     $("#cancelFontBtn").click(function() {
-        $("#fontSelectorDiv").fadeOut('fast');
+       $( "#fontSelectorDiv" ).dialog( "close" );
     });
     $("#fontTxtInput").keyup(function() {
         renderJob1.renderText();
@@ -417,7 +432,7 @@ methodDraw.addExtension("vectorText", function(S) {
                 renderJob1.canvasX = x;
                 renderJob1.canvasY = y;
 
-                $("#fontSelectorDiv").fadeIn('fast');
+                $( "#fontSelectorDiv" ).dialog( "open" );
 
             }
 

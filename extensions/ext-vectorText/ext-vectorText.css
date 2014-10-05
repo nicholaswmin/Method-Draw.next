@@ -1,15 +1,12 @@
 #fontSelectorDiv
 {
   position: relative;
-  display: none;
+  display: block;
   width: 25%;
   height: 80%;
   padding: 2%;
   background-color: #2F2F2C;
   margin: 0 auto;
-  margin-right: -1%;
-  border-radius: 3px;
-  border: 2px solid #4B80FF;
   z-index: 99999999999999999999999999999999999999999999999999;
 }
 

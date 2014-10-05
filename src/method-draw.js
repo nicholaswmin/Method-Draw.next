@@ -1907,7 +1907,6 @@
 			}
 			
       //menu handling
-      var menus = $('.menu');
       var blinker = function(e) {
         e.target.style.background = "#fff";
         setTimeout(function(){e.target.style.background = "#ddd";}, 50);
@@ -1937,15 +1936,15 @@
           $("#zoom").val(parseInt(zoom + deltaY*10)).change()
         }
       })
-			$('.menu_title')
-			  .on('mousedown', function() {
+			 $(document.body)
+			  .on('mousedown',".menu_title", function() {
 			    $("#tools_shapelib").hide()
 			    $("#menu_bar").toggleClass('active');
-			    menus.removeClass('open');
+			    $('.menu').removeClass('open');
           $(this).parent().addClass('open');
 			  })
-        .on('mouseover', function() {
-           menus.removeClass('open');
+        .on('mouseover',".menu_title", function() {
+           $('.menu').removeClass('open');
            $(this).parent().addClass('open');
          });
 

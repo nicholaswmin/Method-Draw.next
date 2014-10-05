@@ -38,7 +38,7 @@ methodDraw.addExtension("inputPlusMinus", function(S) {
         addToHistory = function(cmd) {
             svgCanvas.undoMgr.addCommandToHistory(cmd);
         };
-        $.fn.attachToPanelPosition = function(i) {
+        $.fn.attachToPanelAfter = function(i) {
         if(i===0){i=1};
         i=i-1; 
         var elems = this.find('> *');
