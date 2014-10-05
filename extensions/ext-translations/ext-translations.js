@@ -4,6 +4,8 @@
 
 var translations = {};
 
+
+var translations.de;
 translations.de.file = "Datei";
 translations.de.edit_menu_btn = "Edit";
 translations.de.object_menu_btn = "Objekt";
