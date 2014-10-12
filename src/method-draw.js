@@ -31,7 +31,7 @@
 		  canvas_expansion: 2, 
 		  dimensions: [900,600], 
 		  initFill: {color: '4880FF', opacity: 1},
-		  initStroke: {width: 0, color: '000', opacity: 1},
+		  initStroke: {width: 0, color: '4880FF', opacity: 0},
 			initOpacity: 1,
 			imgPath: 'images/',
 			extPath: 'extensions/',
