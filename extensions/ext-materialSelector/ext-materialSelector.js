@@ -128,10 +128,9 @@ $('#tools_bottom').append("<div class='btn-group dropup '> <button type='button'
 
 
 
-//set dropdown appended for materials to open on page load so he can see his materials. Also show the materials modal on page load
+//Show the materials modal on page load
 setTimeout(function() {
-            $('#materialModal').modal('show');
-            $(".materialInfoBtn").click();
+    $('#materialModal').modal('show');
 }, 100);
 
 $('.materialChangeBtn').click(function() { 

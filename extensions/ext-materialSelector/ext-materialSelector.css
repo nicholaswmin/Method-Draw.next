@@ -1,4 +1,8 @@
 
+.materialInfoBtn{
+	margin:3px;
+}
+
 .materialContainer{
 position: relative;
 height: auto;
