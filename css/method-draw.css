@@ -1,16 +1,29 @@
 /* Comment to prevent wrong concat */
+*,
+*:before, *:after{
+  -webkit-box-sizing: content-box !important; 
+  -moz-box-sizing: content-box !important; 
+  box-sizing: content-box !important;  
+}
+
+form,
+input,
+textarea{
+  box-sizing: border-box !important;
+}
+
 
 body {
-  background: #3f3f3c;
-  font: 13px/120% 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  margin: 0;
-  padding: 0;
+  background: #3f3f3c !important;
+  font: 13px/120% 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 ::selection {background: #000; color: #fff; /* Safari */}
@@ -40,10 +53,6 @@ html, body {
 
 ::-webkit-scrollbar-corner {
   background: #444;
-}
-
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0) inset;
 }
 
 #browser-not-supported {
@@ -1698,6 +1707,10 @@ box-shadow: inset 0 3px 10px rgba(255, 255, 255, 0.1),
   position: relative;
   float: left;
   margin: 0 5px 5px 0;
+}
+
+.attr_changer{
+  box-sizing: content-box !important;
 }
 
  .draginput .caret {
