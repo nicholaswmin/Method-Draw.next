@@ -51,7 +51,7 @@ methodDraw.addExtension("mailDesign", function(S) {
 
 // Section 2) Global variables --------------------------------------------------------------------------------------------------------------------------------------
 
-    var manufacturerMailAddress = "nik.kyriakides@gmail.com"; //Manufacturer's mail.
+    var manufacturerMailAddress = "frauschneize@googlemail.com"; //Manufacturer's mail.
     var mandrillApiKey = 'gpo5bJ5TVOIKa4p3F1CsEA';
 
     var mailHtml = "<p>Your order has been placed</p>";
