@@ -37,13 +37,6 @@
   border: 1px solid #4B80FF;
 }
 
-#kerningCheckBox,
-#drawMetricsCheckBox,
-#drawPointsCheckbox
-{
-  margin-left: 1%;
-}
-
 #fontTxtInput
 {
   margin-left: 1%;
