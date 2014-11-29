@@ -26,6 +26,10 @@ body {
   padding: 0 !important;
 }
 
+select{
+  color:#333 !important;
+}
+
 ::selection {background: #000; color: #fff; /* Safari */}
 ::-moz-selection {background: #000; color: #fff; /* Firefox */}
 
