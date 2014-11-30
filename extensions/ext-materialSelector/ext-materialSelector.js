@@ -66,7 +66,7 @@ var materialList = {
                     "category":"Plastics",
                     "colorName":"grun",
                     "materialTxtrImg": "textures/grun.png",
-                    "htmlColor": "#E0380B"
+                    "htmlColor": "#2ca32c"
         },
         "004": {    
                     "category":"Plastics",
