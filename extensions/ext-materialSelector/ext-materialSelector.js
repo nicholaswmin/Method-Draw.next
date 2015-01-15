@@ -143,7 +143,7 @@ $('.materialChangeBtn').click(function() {
 
 //fill materials modal with JSON materials.
 $.each(materialList, function(key, value) {
-    window.['selMaterialColor'] = value.colorName; //used for mailDesign.js - send the chosen color name to manufacturer - default is last color loaded
+    window['selMaterialColor'] = value.colorName; //used for mailDesign.js - send the chosen color name to manufacturer - default is last color loaded
     var txtrImg = value.materialTxtrImg;
     var htmlColor = value.htmlColor;
     var materialName = value.colorName;
