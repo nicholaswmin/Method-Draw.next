@@ -119,7 +119,6 @@ window.onload = function() {
         for (var prop in translations["de"]) {
             var propertyName = prop;
             if (propertyName === "translationName"||propertyName === "translationPropertyFlag")continue;//disregard them, they are used for populating the selectbox 
-            console.log(propertyName)
             if ($("#" + propertyName).attr('placeholder')) {
                 $("#" + propertyName).attr('placeholder', translations["de"][propertyName]);
             } else if ($("#" + propertyName).attr('title')) {
