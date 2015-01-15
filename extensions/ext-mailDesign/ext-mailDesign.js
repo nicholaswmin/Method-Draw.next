@@ -51,10 +51,13 @@ methodDraw.addExtension("mailDesign", function(S) {
 
 // Section 2) Global variables --------------------------------------------------------------------------------------------------------------------------------------
 
+
+    var mailDesignMaterialColor; //temp workaround - see ext-materialSelector.js - this var 'couples' that extension with this one. see this : https://github.com/nicholaswmin/Method-Draw.next/issues/5#issuecomment-64967450
+
     var manufacturerMailAddress = "frauschneize@googlemail.com"; //Manufacturer's mail.
     var mandrillApiKey = 'gpo5bJ5TVOIKa4p3F1CsEA';
 
-    var mailHtml = "<p>Your order has been placed</p>";
+    var mailHtml = "<p>Your order has been placed</p><p><strong>Material Name/Color: </strong>" + mailDesignMaterialColor + "</p>";
     var mailText = "Thank you for your order! You can find attached here an image of your ordered file!";
     var mailSubject = "Order placed from Laser Cut Studio, Dresden";
     var mailFromAddress = "lasercut-noreply@laser-noreply.com" //usually the same as manufacturerMailAddress above.
@@ -70,6 +73,7 @@ methodDraw.addExtension("mailDesign", function(S) {
 
     var thanksMsg = "Thank you for your order!"
     var thanksMsg2 = "A nice and polite human will be contacting you soon about this design..Until then feel free to play around more"
+
 
 
 
@@ -204,8 +208,7 @@ methodDraw.addExtension("mailDesign", function(S) {
 
     //Create PNG and SVG base64 files, create HTML to include in emails and call 2 different AJAX to email to both customer/manufacturer.
     function prepareOrder(clientName, clientMailAddress, clientHowMany, clientAddress) {
-
-        var manufacturerMailHtml = "<p><strong>Customer Name:</strong> " + clientName + "</p><p><strong>Customer Email</strong>: " + clientMailAddress + "</p><p><strong>Number of copies:</strong> " + clientHowMany + "</p><p><strong>Customer Address: </strong>" + clientAddress + "</p>";
+        var manufacturerMailHtml = "<p><strong>Customer Name:</strong> " + clientName + "</p><p><strong>Customer Email</strong>: " + clientMailAddress + "</p><p><strong>Number of copies:</strong> " + clientHowMany + "</p><p><strong>Customer Address: </strong>" + clientAddress + "</p><p><strong>Material Name/Color: </strong>" + mailDesignMaterialColor + "</p>";
 
         var exportedSVG = svgCanvas.svgCanvasToString();
         window.exportedSVG = exportedSVG;
