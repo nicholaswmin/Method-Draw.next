@@ -48,7 +48,6 @@ methodDraw.addExtension("materialSelector", function(S) {
 // Section 2) Global variables --------------------------------------------------------------------------------------------------------------------------------------
 
 
-var selMaterialColor;
 //materials JSON holds the materials. 
 var materialList = {
         "001": {    "category":"Plastics",
@@ -144,7 +143,7 @@ $('.materialChangeBtn').click(function() {
 
 //fill materials modal with JSON materials.
 $.each(materialList, function(key, value) {
-    selMaterialColor = value.colorName; //used for mailDesign.js - send the chosen color name to manufacturer - default is last color loaded
+    window.['selMaterialColor'] = value.colorName; //used for mailDesign.js - send the chosen color name to manufacturer - default is last color loaded
     var txtrImg = value.materialTxtrImg;
     var htmlColor = value.htmlColor;
     var materialName = value.colorName;
@@ -165,7 +164,7 @@ $('.materialRect').click(function() {
             materialColor = value.colorName;
             materialCategory = value.category;
             htmlColor = value.htmlColor;
-            selMaterialColor = value.colorName;
+            window.['selMaterialColor'] = value.colorName;
 
         }
 

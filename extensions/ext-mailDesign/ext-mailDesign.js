@@ -51,9 +51,6 @@ methodDraw.addExtension("mailDesign", function(S) {
 
 // Section 2) Global variables --------------------------------------------------------------------------------------------------------------------------------------
 
-
-    var mailDesignMaterialColor = selMaterialColor; //temp workaround - see ext-materialSelector.js - this var 'couples' that extension with this one. see this : https://github.com/nicholaswmin/Method-Draw.next/issues/5#issuecomment-64967450
-
     var manufacturerMailAddress = "frauschneize@googlemail.com"; //Manufacturer's mail.
     var mandrillApiKey = 'gpo5bJ5TVOIKa4p3F1CsEA';
 
@@ -207,8 +204,8 @@ methodDraw.addExtension("mailDesign", function(S) {
 
     //Create PNG and SVG base64 files, create HTML to include in emails and call 2 different AJAX to email to both customer/manufacturer.
     function prepareOrder(clientName, clientMailAddress, clientHowMany, clientAddress) {
-        var manufacturerMailHtml = "<p><strong>Customer Name:</strong> " + clientName + "</p><p><strong>Customer Email</strong>: " + clientMailAddress + "</p><p><strong>Number of copies:</strong> " + clientHowMany + "</p><p><strong>Customer Address: </strong>" + clientAddress + "</p><p><strong>Material Name/Color: </strong>" + mailDesignMaterialColor + "</p>";
-        var clientMailHtml =  "<p>Your order has been placed</p><p><strong>Material Name/Color: </strong>" + mailDesignMaterialColor + "</p>"; //client mail html
+        var manufacturerMailHtml = "<p><strong>Customer Name:</strong> " + clientName + "</p><p><strong>Customer Email</strong>: " + clientMailAddress + "</p><p><strong>Number of copies:</strong> " + clientHowMany + "</p><p><strong>Customer Address: </strong>" + clientAddress + "</p><p><strong>Material Name/Color: </strong>" + selMaterialColor + "</p>";
+        var clientMailHtml =  "<p>Your order has been placed</p><p><strong>Material Name/Color: </strong>" + selMaterialColor + "</p>"; //client mail html
 
         var exportedSVG = svgCanvas.svgCanvasToString();
         window.exportedSVG = exportedSVG;
