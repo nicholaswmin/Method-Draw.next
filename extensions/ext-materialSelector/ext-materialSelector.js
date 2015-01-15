@@ -164,7 +164,7 @@ $('.materialRect').click(function() {
             materialColor = value.colorName;
             materialCategory = value.category;
             htmlColor = value.htmlColor;
-            window.['selMaterialColor'] = value.colorName;
+            window['selMaterialColor'] = value.colorName;
 
         }
 
