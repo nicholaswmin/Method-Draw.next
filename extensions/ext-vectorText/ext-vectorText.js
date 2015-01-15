@@ -68,6 +68,7 @@ methodDraw.addExtension("vectorText", function(S) {
     var resultFontSize = 50; //Startup font-size. Rec value is 30-60.
     var fontSize = 120; //Only for preview on canvas
     var resultSvgFill = svgCanvas.getColor('fill'); //You can change this into any hex color value. Fill color of resultant SVG elements.
+    console.log(resultSvgFill)
 
 
 // Section 3) Append necessary HTML elements (if it's a left-toolbar button define it according to svg-edit extension docs in return object.)------------------------
